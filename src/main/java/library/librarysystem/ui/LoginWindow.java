@@ -1,25 +1,12 @@
 package library.librarysystem.ui;
 
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import library.librarysystem.business.ControllerInterface;
-import library.librarysystem.business.LoginException;
 import library.librarysystem.business.SystemController;
+import library.librarysystem.dataaccess.Auth;
 
 import java.io.IOException;
 
@@ -54,6 +41,20 @@ public class LoginWindow extends Stage implements LibWindow {
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
 
+    }
+
+    public void loginSuccessful(Auth currentAuth) {
+        Start.hideAllWindows();
+        try {
+            switch (currentAuth) {
+                case ADMIN -> AdminWindow.INSTANCE.init();
+                case LIBRARIAN -> System.out.println("librarian");
+                case BOTH -> System.out.println("both");
+            }
+            AdminWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

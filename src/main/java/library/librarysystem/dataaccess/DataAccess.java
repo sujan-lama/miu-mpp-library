@@ -16,6 +16,10 @@ public interface DataAccess {
 
     public void saveNewMember(LibraryMember member);
 
+    public void deleteMember(LibraryMember member);
+
+    public void editMember(LibraryMember member);
+
     boolean isBookAvailable(String memberId, String isbn);
 
     void createCheckOutRecordEntry(String memberId, String isbn);

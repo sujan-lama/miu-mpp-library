@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
+import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.ui.AllBooksWindow;
 import library.librarysystem.ui.AllMembersWindow;
@@ -11,6 +12,7 @@ import library.librarysystem.ui.LoginWindow;
 import library.librarysystem.ui.Start;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -62,7 +64,8 @@ public class StartController extends Stage {
             }
         }
         ControllerInterface ci = new SystemController();
-        List<String> ids = ci.allMemberIds();
+        List<LibraryMember> libraryMembers = ci.allMembers();
+        List<String> ids = new ArrayList<>(libraryMembers.stream().map(LibraryMember::getMemberId).toList());
         Collections.sort(ids);
         System.out.println(ids);
         StringBuilder sb = new StringBuilder();

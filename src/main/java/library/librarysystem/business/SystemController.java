@@ -28,11 +28,26 @@ public class SystemController implements ControllerInterface {
     }
 
     @Override
-    public List<String> allMemberIds() {
+    public void logout() {
+        currentAuth = null;
+    }
+
+    @Override
+    public List<LibraryMember> allMembers() {
         DataAccess da = new DataAccessFacade();
-        List<String> retval = new ArrayList<>();
-        retval.addAll(da.readMemberMap().keySet());
-        return retval;
+        return da.readMemberMap().values().stream().toList();
+    }
+
+    @Override
+    public void editMember(LibraryMember member) {
+        DataAccess da = new DataAccessFacade();
+        da.editMember(member);
+    }
+
+    @Override
+    public void deleteMember(LibraryMember member) {
+        DataAccess da = new DataAccessFacade();
+        da.deleteMember(member);
     }
 
     @Override

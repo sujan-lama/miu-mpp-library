@@ -17,6 +17,12 @@ final public class LibraryMember extends Person implements Serializable {
 		return memberId;
 	}
 
+	public boolean isEmpty() {
+		return getMemberId().isEmpty() || getFirstName().isEmpty() || getLastName().isEmpty() || getTelephone().isEmpty() || getAddress().isEmpty();
+
+	}
+
+	
 	public CheckoutRecord getCheckoutRecord() {
 		return checkoutRecord;
 	}

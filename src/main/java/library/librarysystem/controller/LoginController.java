@@ -2,12 +2,15 @@ package library.librarysystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import library.librarysystem.business.*;
+import library.librarysystem.business.ControllerInterface;
+import library.librarysystem.business.LoginException;
+import library.librarysystem.business.SystemController;
+import library.librarysystem.ui.AdminWindow;
+import library.librarysystem.ui.LoginWindow;
 import library.librarysystem.ui.Start;
 
 public class LoginController extends Stage {
@@ -21,9 +24,6 @@ public class LoginController extends Stage {
     @FXML
     private PasswordField passwordTextField;
 
-
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
     @FXML
     public void loginValid(ActionEvent event) {
 
@@ -31,9 +31,10 @@ public class LoginController extends Stage {
         try {
             ControllerInterface c = new SystemController();
             c.login(userTextField.getText().trim(), passwordTextField.getText().trim());
-            Start.hideAllWindows();
             messageBar.setTextFill(Start.Colors.green);
             messageBar.setText("Login successful");
+            LoginWindow.INSTANCE.loginSuccessful(SystemController.currentAuth);
+
         } catch (LoginException ex) {
             messageBar.setTextFill(Start.Colors.red);
             messageBar.setText("Error! " + ex.getMessage());
@@ -45,4 +46,5 @@ public class LoginController extends Stage {
         Start.hideAllWindows();
         Start.primStage().show();
     }
+
 }
