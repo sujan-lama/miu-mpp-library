@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.SystemController;
 
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
@@ -107,14 +106,18 @@ public class Start extends Application {
             public void handle(ActionEvent e) {
                 hideAllWindows();
                 if (!AllBooksWindow.INSTANCE.isInitialized()) {
-                    AllBooksWindow.INSTANCE.init();
+                    try {
+                        AllBooksWindow.INSTANCE.init();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
                 ControllerInterface ci = new SystemController();
                 List<String> ids = ci.allBookIds();
                 Collections.sort(ids);
                 StringBuilder sb = new StringBuilder();
                 for (String s : ids) {
-                    sb.append(s + "\n");
+                    sb.append(s).append("\n");
                 }
                 AllBooksWindow.INSTANCE.setData(sb.toString());
                 AllBooksWindow.INSTANCE.show();
@@ -127,7 +130,11 @@ public class Start extends Application {
             public void handle(ActionEvent e) {
                 hideAllWindows();
                 if (!AllMembersWindow.INSTANCE.isInitialized()) {
-                    AllMembersWindow.INSTANCE.init();
+                    try {
+                        AllMembersWindow.INSTANCE.init();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
                 ControllerInterface ci = new SystemController();
                 List<String> ids = ci.allMemberIds();

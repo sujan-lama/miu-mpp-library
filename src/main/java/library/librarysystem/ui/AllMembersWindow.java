@@ -1,18 +1,11 @@
 package library.librarysystem.ui;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import library.librarysystem.controller.AllMemberController;
+
+import java.io.IOException;
 
 public class AllMembersWindow extends Stage implements LibWindow {
     public static final AllMembersWindow INSTANCE = new AllMembersWindow();
@@ -27,45 +20,23 @@ public class AllMembersWindow extends Stage implements LibWindow {
         isInitialized = val;
     }
 
-    private TextArea ta;
-
-    public void setData(String data) {
-        ta.setText(data);
-    }
 
     /* This class is a singleton */
     private AllMembersWindow() {
     }
 
-    public void init() {
-        GridPane grid = new GridPane();
-        grid.setId("top-container");
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Text scenetitle = new Text("All Member IDs");
-        scenetitle.setFont(Font.font("Harlow Solid Italic", FontWeight.NORMAL, 20)); //Tahoma
-        grid.add(scenetitle, 0, 0, 2, 1);
+    private FXMLLoader loader;
 
-        ta = new TextArea();
-        grid.add(ta, 0, 1);
+    public void setData(String data) {
+        ((AllMemberController) loader.getController()).fillData(data);
+    }
 
-        Button backBtn = new Button("<= Back to Main");
-        backBtn.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                Start.hideAllWindows();
-                Start.primStage().show();
-            }
-        });
-        HBox hBack = new HBox(10);
-        hBack.setAlignment(Pos.BOTTOM_LEFT);
-        hBack.getChildren().add(backBtn);
-        grid.add(hBack, 0, 2);
-        Scene scene = new Scene(grid);
+    public void init() throws IOException {
+        loader = new FXMLLoader(AllBooksWindow.class.getResource("allmember.fxml"));
+        Scene scene = new Scene(loader.load(), 480, 450);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
+        isInitialized(true);
     }
 }
