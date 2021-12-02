@@ -2,13 +2,16 @@ package library.librarysystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import library.librarysystem.business.ControllerInterface;
-import library.librarysystem.business.LoginException;
-import library.librarysystem.business.SystemController;
+import javafx.stage.Stage;
+import library.librarysystem.business.*;
 import library.librarysystem.ui.Start;
 
-public class LoginController {
+import java.io.IOException;
+
+public class LoginController extends Stage {
 
     @FXML
     private TextField userTextField;
@@ -29,6 +32,22 @@ public class LoginController {
         try {
             ControllerInterface c = new SystemController();
             c.login(userTextField.getText().trim(), passwordTextField.getText().trim());
+            String fxml = "";
+            switch (SystemController.currentAuth) {
+                case ADMIN -> fxml = "admin.fxml";
+                case LIBRARIAN -> fxml = "librarian.fxml";
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource(fxml));
+            try {
+                Start.hideAllWindows();
+                Scene scene = new Scene(fxmlLoader.load(), 480, 360);
+                scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
+                setScene(scene);
+                show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             messageBar.setTextFill(Start.Colors.green);
             messageBar.setText("Login successful");
         } catch (LoginException ex) {
@@ -41,5 +60,14 @@ public class LoginController {
     public void onBackPressed() {
         Start.hideAllWindows();
         Start.primStage().show();
+    }
+
+    @FXML
+    public void submit() {
+        ControllerInterface c = new SystemController();
+        c.saveMember(new LibraryMember("101", "sujan", "maka", "tel",
+                new Address("57 kilvert", "Boston", "MA", "09898")));
+        messageBar.setTextFill(Start.Colors.green);
+        messageBar.setText("Save successful");
     }
 }
