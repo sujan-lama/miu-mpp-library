@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import library.librarysystem.business.CheckoutRecordEntry;
 import library.librarysystem.dataaccess.DataAccessFacade;
 
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,6 +37,9 @@ public class CheckoutRecordEntryController implements Initializable {
     @FXML
     private Label memberName;
 
+    @FXML
+    private Button printButton;
+
     public ObservableList<CheckoutRecordEntry> list = FXCollections.observableArrayList(
             DataAccessFacade.getCheckoutRecordEntries(LibrarianController.currentMemberId)
     );
@@ -52,5 +57,10 @@ public class CheckoutRecordEntryController implements Initializable {
         checkoutDate.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
         dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         table.setItems(list);
+    }
+
+    @FXML
+    public void printCheckoutRecord(ActionEvent actionEvent){
+        System.out.println("bimgmgmmgsm");
     }
 }
