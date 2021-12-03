@@ -15,4 +15,6 @@ public interface ControllerInterface {
     boolean isBookAvailable(String memberId, String isbn);
 
     void createCheckOutRecordEntry(String memberId, String isbn);
+
+    LibraryMember getMemberById(String memberId);
 }

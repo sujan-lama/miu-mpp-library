@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-
-<AnchorPane minHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/9.0.1"
+<AnchorPane minHeight="225.0" prefHeight="256.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/11.0.2"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="library.librarysystem.controller.CheckoutRecordEntryController">
     <children>
-        <TableView fx:id="table" layoutX="14.0" layoutY="14.0" prefHeight="300.0" prefWidth="500.0"
+        <TableView fx:id="table" layoutX="14.0" layoutY="80.0" prefHeight="176.0" prefWidth="467.0"
                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                   AnchorPane.topAnchor="0.0">
+                   AnchorPane.topAnchor="80.0">
             <columns>
                 <TableColumn fx:id="isbn" prefWidth="75.0" text="ISBN"/>
                 <TableColumn fx:id="title" prefWidth="75.0" text="Title"/>
@@ -23,5 +21,9 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
             </columnResizePolicy>
         </TableView>
+        <Label layoutX="54.0" layoutY="20.0" text="Member Id"/>
+        <Label layoutX="55.0" layoutY="48.0" text="Member Name"/>
+        <Label fx:id="memberId" layoutX="173.0" layoutY="20.0" prefHeight="16.0" prefWidth="96.0" text=""/>
+        <Label fx:id="memberName" layoutX="173.0" layoutY="48.0" prefHeight="16.0" prefWidth="96.0" text=""/>
     </children>
 </AnchorPane>

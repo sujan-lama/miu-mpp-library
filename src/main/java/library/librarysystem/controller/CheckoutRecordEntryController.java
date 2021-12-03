@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -29,13 +30,10 @@ public class CheckoutRecordEntryController implements Initializable {
     @FXML
     private TableColumn<CheckoutRecordEntry, String> dueDate;
 
-//    public ObservableList<CheckoutRecordEntry> list = FXCollections.observableArrayList(
-//            new CheckoutRecordEntry(LocalDate.now(), LocalDate.now(),
-//                    new BookCopy(new Book("231-213", "Hello World",
-//                            0, List.of(new Author("Joe", "Thomas", "641-445-2123",
-//                            new Address("57 kilvert", "KTM", "GA", "34234"),
-//                            "A happy man is he."))), 1))
-//    );
+    @FXML
+    private Label memberId;
+    @FXML
+    private Label memberName;
 
     public ObservableList<CheckoutRecordEntry> list = FXCollections.observableArrayList(
             DataAccessFacade.getCheckoutRecordEntries(LibrarianController.currentMemberId)
@@ -43,6 +41,8 @@ public class CheckoutRecordEntryController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+        memberId.setText(LibrarianController.currentMemberId);
+        memberName.setText(LibrarianController.currentMemberName);
         isbn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getBookCopy().getBook().getIsbn()));
         title.setCellValueFactory(cellData ->

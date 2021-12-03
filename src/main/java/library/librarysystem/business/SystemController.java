@@ -60,4 +60,10 @@ public class SystemController implements ControllerInterface {
         DataAccess dataAccess = new DataAccessFacade();
         dataAccess.createCheckOutRecordEntry(memberId, isbn);
     }
+
+    @Override
+    public LibraryMember getMemberById(String memberId) {
+        DataAccess dataAccess = new DataAccessFacade();
+        return dataAccess.readMemberMap().get(memberId);
+    }
 }
