@@ -2,9 +2,7 @@ package library.librarysystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -36,7 +34,7 @@ public class IsbnSearchController extends Stage {
     private Text author;
 
     @FXML
-    private Text description;
+    private Text numberOfCopies;
 
     private DataAccessFacade dataAccessFacade;
 
@@ -50,13 +48,13 @@ public class IsbnSearchController extends Stage {
     public void searchBook(ActionEvent event) {
         dataAccessFacade = new DataAccessFacade();
         String isbn = isbnSearchText.getText().trim();
-        if (!isbn.isBlank()){
+        if (!isbn.isBlank()) {
             boolean isBookAvailable = searchBookInDatabase(isbn);
-            if (isBookAvailable){
-                Book book =dataAccessFacade.readBooksMap().get(isbn);
+            if (isBookAvailable) {
+                Book book = dataAccessFacade.readBooksMap().get(isbn);
                 inflateBookDataToView(book);
                 setPositiveLabel();
-            }else {
+            } else {
                 setNegativeLabel();
             }
         }
@@ -66,7 +64,7 @@ public class IsbnSearchController extends Stage {
         isbn.setText(book.getIsbn());
         bookTitle.setText(book.getTitle());
         author.setText(getAuthorsFromBook(book.getAuthors()));
-        description.setText("default book description");
+        numberOfCopies.setText(String.valueOf(book.getNumCopies()));
     }
 
     private String getAuthorsFromBook(List<Author> authors) {
@@ -93,16 +91,38 @@ public class IsbnSearchController extends Stage {
     private boolean searchBookInDatabase(String isbn) {
         boolean isBookAvailable = false;
         Book book = dataAccessFacade.readBooksMap().get(isbn);
-        if (book!=null){
+        if (book != null) {
             isBookAvailable = true;
         }
         return isBookAvailable;
     }
 
+    @FXML
+    public void addBookCopy(ActionEvent event) {
+        if (noOfBooksCombo.getValue() != null) {
+            int numOfCopies = noOfBooksCombo.getValue();
+            makeBookCopy(numOfCopies);
+        }else {
+            Alert alert = new Alert(Alert.AlertType.NONE, "Please select the book and number of copies" + " ?", ButtonType.CLOSE);
+            alert.show();
+        }
+    }
+
+    private void makeBookCopy(int numOfCopies) {
+        Alert alert = new Alert(Alert.AlertType.NONE, "Do you want to add copy of the current book ", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            Book book = dataAccessFacade.readBooksMap().get(isbn.getText());
+            book.addCopy(numOfCopies);
+        }
+
+    }
+
 
     public void setData() {
-        for (int i =1;i<=10;i++){
-           noOfBooksCombo.getItems().add(i);
+        for (int i = 1; i <= 10; i++) {
+            noOfBooksCombo.getItems().add(i);
         }
     }
 
