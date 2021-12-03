@@ -15,11 +15,11 @@
                 <Font name="Kristen ITC" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="27.0" layoutY="147.0" prefHeight="30.0" prefWidth="66.0" text="First Name" />
-        <Label layoutX="238.0" layoutY="147.0" prefHeight="30.0" prefWidth="65.0" text="Last Name" />
+        <Label layoutX="27.0" layoutY="147.0" prefHeight="30.0" prefWidth="142.0" text="First Name" />
+        <Label layoutX="226.0" layoutY="147.0" prefHeight="30.0" prefWidth="132.0" text="Last Name" />
         <TextField fx:id="firstName" layoutX="27.0" layoutY="185.0" prefHeight="26.0" prefWidth="141.0" />
         <TextField fx:id="lastName" layoutX="228.0" layoutY="185.0" prefHeight="26.0" prefWidth="132.0" />
-        <Label layoutX="424.0" layoutY="147.0" prefHeight="30.0" prefWidth="99.0" text="Phone Number" />
+        <Label layoutX="424.0" layoutY="147.0" prefHeight="30.0" prefWidth="132.0" text="Phone Number" />
         <Label layoutX="31.0" layoutY="237.0" prefHeight="30.0" prefWidth="99.0" text="Address">
             <font>
                 <Font name="System Bold" size="18.0" />

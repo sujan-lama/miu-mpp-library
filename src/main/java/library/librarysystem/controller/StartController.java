@@ -7,10 +7,7 @@ import library.librarysystem.business.Book;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
-import library.librarysystem.ui.AllBooksWindow;
-import library.librarysystem.ui.AllMembersWindow;
-import library.librarysystem.ui.LoginWindow;
-import library.librarysystem.ui.Start;
+import library.librarysystem.ui.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,6 +75,18 @@ public class StartController extends Stage {
         System.out.println(sb.toString());
         AllMembersWindow.INSTANCE.setData(sb.toString());
         AllMembersWindow.INSTANCE.show();
+
+    }
+
+    @FXML
+    public void searchBook(ActionEvent event) {
+        Start.hideAllWindows();
+        try {
+            SearchBooksWindow.INSTANCE.init();
+            SearchBooksWindow.INSTANCE.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

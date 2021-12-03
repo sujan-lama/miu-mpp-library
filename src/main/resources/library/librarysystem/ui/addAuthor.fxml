@@ -13,8 +13,8 @@
                 <Font name="Kristen ITC" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="27.0" layoutY="78.0" prefHeight="30.0" prefWidth="66.0" text="First Name" />
-        <Label layoutX="238.0" layoutY="78.0" prefHeight="30.0" prefWidth="65.0" text="Last Name" />
+        <Label layoutX="27.0" layoutY="78.0" prefHeight="30.0" prefWidth="132.0" text="First Name" />
+        <Label layoutX="238.0" layoutY="78.0" prefHeight="30.0" prefWidth="118.0" text="Last Name" />
         <Label layoutX="424.0" layoutY="78.0" prefHeight="30.0" prefWidth="99.0" text="Phone Number" />
         <Label layoutX="27.0" layoutY="158.0" prefHeight="30.0" prefWidth="66.0" text="Bio" />
         <TextField fx:id="firstName" layoutX="27.0" layoutY="116.0" prefHeight="26.0" prefWidth="141.0" />

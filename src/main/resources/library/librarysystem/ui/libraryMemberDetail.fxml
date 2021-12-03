@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LibraryMemberDetailController">
     <children>
-        <Label alignment="CENTER" layoutX="183.0" layoutY="34.0" prefHeight="18.0" prefWidth="194.0" text="Author Detail">
+        <Label alignment="CENTER" layoutX="183.0" layoutY="34.0" prefHeight="18.0" prefWidth="194.0" text="Library Member Detail">
             <font>
                 <Font name="Candara" size="18.0" />
             </font>

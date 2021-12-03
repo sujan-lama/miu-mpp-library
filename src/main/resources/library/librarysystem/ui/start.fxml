@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane prefHeight="356.0" prefWidth="492.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="library.librarysystem.controller.StartController">
     <children>
@@ -21,6 +17,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#login" text="Login"/>
                         <MenuItem mnemonicParsing="false" onAction="#allBookIds" text="All Book Ids"/>
                         <MenuItem mnemonicParsing="false" onAction="#allMemberIds" text="All Member Ids"/>
+                        <MenuItem mnemonicParsing="false" onAction="#searchBook" text="Search book "/>
                     </items>
                 </Menu>
             </menus>
