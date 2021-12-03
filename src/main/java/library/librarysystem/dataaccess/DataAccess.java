@@ -31,4 +31,6 @@ public interface DataAccess {
     boolean isBookAvailable(String memberId, String isbn);
 
     void createCheckOutRecordEntry(String memberId, String isbn);
+
+    boolean checkOverdueRecords(String currentIsbn);
 }

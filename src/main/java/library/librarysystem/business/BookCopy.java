@@ -1,5 +1,6 @@
 package library.librarysystem.business;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Immutable class
@@ -10,6 +11,11 @@ final public class BookCopy implements Serializable {
 	private Book book;
 	private int copyNum;
 	private boolean isAvailable;
+
+	//Transient values use for data transfer only
+	private String memberName;
+	private LocalDate dueDate;
+
 	BookCopy(Book book, int copyNum, boolean isAvailable) {
 		this.book = book;
 		this.copyNum = copyNum;
@@ -45,5 +51,20 @@ final public class BookCopy implements Serializable {
 		BookCopy copy = (BookCopy)ob;
 		return copy.book.getIsbn().equals(book.getIsbn()) && copy.copyNum == copyNum;
 	}
-	
+
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public LocalDate getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(LocalDate dueDate) {
+		this.dueDate = dueDate;
+	}
 }

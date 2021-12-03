@@ -2,6 +2,8 @@ package library.librarysystem.dataaccess;
 
 
 import library.librarysystem.business.*;
+import library.librarysystem.controller.OverdueWindowController;
+import library.librarysystem.ui.OverdueWindow;
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -159,6 +161,59 @@ public class DataAccessFacade implements DataAccess {
         HashMap<String, LibraryMember> memberHashMap = (HashMap<String, LibraryMember>) readFromStorage(
                 StorageType.MEMBERS);
         return memberHashMap.get(memberId).getCheckoutRecord().getCheckoutRecordEntries();
+    }
+
+    public static List<BookCopy> getBooksByIsbn(String isbn) {
+        HashMap<String, Book> bookHashMap = (HashMap<String, Book>) readFromStorage(
+                StorageType.BOOKS);
+        HashMap<String, LibraryMember> map = (HashMap<String, LibraryMember>) readFromStorage(
+                StorageType.MEMBERS);
+        List<BookCopy> bookCopies = Arrays.asList(bookHashMap.get(isbn).getCopies());
+        List<BookCopy> resultCopies = new ArrayList<>();
+        for (LibraryMember libraryMember : map.values()) {
+            if (libraryMember.getCheckoutRecord() != null
+                    && libraryMember.getCheckoutRecord().getCheckoutRecordEntries() != null) {
+                List<CheckoutRecordEntry> entries = libraryMember.getCheckoutRecord().getCheckoutRecordEntries();
+                for (CheckoutRecordEntry entry : entries) {
+                    if (entry.getDueDate().isBefore(LocalDate.now())
+                            && !entry.getBookCopy().isAvailable() &&
+                            entry.getBookCopy().getBook().getIsbn().equals(OverdueWindowController.currentIsbn)) {
+                        BookCopy bookCopy = entry.getBookCopy();
+                        bookCopy.setDueDate(entry.getDueDate());
+                        bookCopy.setMemberName(libraryMember.getFirstName() + " " + libraryMember.getLastName());
+                        resultCopies.add(bookCopy);
+                    }
+                }
+//                if (flag) {
+//                    break;
+//                }
+            }
+        }
+        return resultCopies;
+    }
+
+    @Override
+    public boolean checkOverdueRecords(String currentIsbn) {
+        HashMap<String, LibraryMember> map = readMemberMap();
+        boolean flag = false;
+        for (LibraryMember libraryMember : map.values()) {
+            if (libraryMember.getCheckoutRecord() != null
+                    && libraryMember.getCheckoutRecord().getCheckoutRecordEntries() != null) {
+                List<CheckoutRecordEntry> entries = libraryMember.getCheckoutRecord().getCheckoutRecordEntries();
+                for (CheckoutRecordEntry entry : entries) {
+                    if (entry.getDueDate().isBefore(LocalDate.now())
+                            && !entry.getBookCopy().isAvailable() &&
+                            entry.getBookCopy().getBook().getIsbn().equals(currentIsbn)) {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag) {
+                    break;
+                }
+            }
+        }
+        return flag;
     }
 
     void updateBook(Book book) {
