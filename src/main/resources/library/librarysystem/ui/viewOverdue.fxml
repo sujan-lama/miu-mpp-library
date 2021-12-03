@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="110.0" prefHeight="161.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.OverdueWindowController">
+    <children>
+        <Label layoutX="54.0" layoutY="66.0" text="Search overdue books" />
+        <Label layoutX="53.0" layoutY="105.0" text="ISBN" />
+        <Button layoutX="293.0" layoutY="100.0" mnemonicParsing="false" onAction="#searchOverdue" text="Search" />
+        <Label fx:id="messageBar" layoutX="53.0" layoutY="136.0" prefHeight="16.0" prefWidth="291.0" textFill="#e10909" />
+        <TextField fx:id="searchField" layoutX="117.0" layoutY="100.0" prefHeight="26.0" prefWidth="135.0" />
+        <Button layoutX="53.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
+    </children>
+</AnchorPane>
