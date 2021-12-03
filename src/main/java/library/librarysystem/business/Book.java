@@ -1,5 +1,8 @@
 package library.librarysystem.business;
 
+import library.librarysystem.dataaccess.DataAccess;
+import library.librarysystem.dataaccess.DataAccessFacade;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -48,11 +51,13 @@ final public class Book implements Serializable {
 		copies = newArr;
 	}
 
-	public void addCopy(int numOfCopies) {
-		BookCopy[] newArr = new BookCopy[copies.length + numOfCopies];
-		System.arraycopy(copies, 0, newArr, 0, copies.length);
-		newArr[copies.length] = new BookCopy(this, copies.length +numOfCopies, true);
-		copies = newArr;
+	public void addCopy(String isbn, int numOfCopies) {
+		DataAccess da = new DataAccessFacade();
+		Book book = da.readBooksMap().get(isbn);
+		for (int i = 0; i < numOfCopies; i++) {
+			book.addCopy();
+		}
+		da.editBook(book);
 	}
 	
 	

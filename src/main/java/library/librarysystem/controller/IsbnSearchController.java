@@ -36,6 +36,9 @@ public class IsbnSearchController extends Stage {
     @FXML
     private Text numberOfCopies;
 
+    @FXML
+    private Label messageBar;
+
     private DataAccessFacade dataAccessFacade;
 
     @FXML
@@ -102,7 +105,7 @@ public class IsbnSearchController extends Stage {
         if (noOfBooksCombo.getValue() != null) {
             int numOfCopies = noOfBooksCombo.getValue();
             makeBookCopy(numOfCopies);
-        }else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.NONE, "Please select the book and number of copies" + " ?", ButtonType.CLOSE);
             alert.show();
         }
@@ -114,9 +117,11 @@ public class IsbnSearchController extends Stage {
 
         if (alert.getResult() == ButtonType.YES) {
             Book book = dataAccessFacade.readBooksMap().get(isbn.getText());
-            book.addCopy(numOfCopies);
+            book.addCopy(isbn.getText(), numOfCopies);
+            noOfBooksCombo.setValue(null);
+            messageBar.setTextFill(Start.Colors.green);
+            messageBar.setText("Book copies added successfully.");
         }
-
     }
 
 
