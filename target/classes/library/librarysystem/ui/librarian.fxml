@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="290.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LoginController">
-    <children>
-        <Button layoutX="29.0" layoutY="33.0" mnemonicParsing="false" onAction="#onBackPressed" text="&lt;= Back to Main" />
-        <TextArea layoutX="29.0" layoutY="84.0" prefHeight="68.0" prefWidth="199.0" text="Welcome Librarian" />
-    </children>
-</Pane>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LibrarianController">
+    <padding>
+        <Insets bottom="40" left="40" right="40" top="40" />
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints halignment="RIGHT" maxWidth="Infinity" minWidth="100" prefWidth="100">
+        </ColumnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="Infinity" minWidth="200" prefWidth="200">
+        </ColumnConstraints>
+    </columnConstraints>
+
+    <!-- Add Header Label -->
+    <Label text="Search for Member" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.rowSpan="1">
+        <font>
+            <Font name="Arial" size="24" />
+        </font>
+        <GridPane.margin>
+            <Insets bottom="20" left="0" right="0" top="20" />
+        </GridPane.margin>
+    </Label>
+
+
+    <!-- Add Name Label -->
+    <Label text="Member Id : " GridPane.columnIndex="0" GridPane.rowIndex="1">
+    </Label>
+    <!-- Add Name Text Field -->
+    <TextField fx:id="memberField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+
+    <!-- Add Email Label -->
+    <Label text="ISBN : " GridPane.columnIndex="0" GridPane.rowIndex="2">
+    </Label>
+    <!-- Add Email Text Field -->
+    <TextField fx:id="isbnField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <!-- Add Submit Button -->
+    <Button fx:id="searchButton" defaultButton="true" onAction="#handleSearchButtonAction" prefHeight="40" prefWidth="100" text="Search" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.rowSpan="1">
+        <GridPane.margin>
+            <Insets bottom="20" left="0" right="0" top="20" />
+        </GridPane.margin>
+    </Button>
+    <!--    <Label fx:id="messageBar" layoutX="86.0" layoutY="241.0" prefHeight="18.0" prefWidth="289.0" text="" textFill="#e10909" />-->
+    <Label fx:id="messageBar" prefHeight="18.0" prefWidth="190.0" text="" textFill="#e10909" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

@@ -48,4 +48,16 @@ public class SystemController implements ControllerInterface {
         DataAccess da = new DataAccessFacade();
         da.saveNewMember(member);
     }
+
+    @Override
+    public boolean isBookAvailable(String memberId, String isbn) {
+        DataAccess dataAccess = new DataAccessFacade();
+        return dataAccess.isBookAvailable(memberId, isbn);
+    }
+
+    @Override
+    public void createCheckOutRecordEntry(String memberId, String isbn) {
+        DataAccess dataAccess = new DataAccessFacade();
+        dataAccess.createCheckOutRecordEntry(memberId, isbn);
+    }
 }
