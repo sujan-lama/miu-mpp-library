@@ -12,9 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import library.librarysystem.business.CheckoutRecordEntry;
 import library.librarysystem.dataaccess.DataAccessFacade;
+import library.librarysystem.ui.CheckInBookWindow;
+import library.librarysystem.ui.CheckoutRecordTableWindow;
+import library.librarysystem.ui.LibrarianWindow;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -78,5 +83,23 @@ public class CheckoutRecordEntryController implements Initializable {
             asciiTable.addRule();
         });
         System.out.println(asciiTable.render());
+    }
+
+    public void onBackPressed(MouseEvent mouseEvent) {
+        try {
+            LibrarianWindow.INSTANCE.init();
+            CheckoutRecordTableWindow.INSTANCE.hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void checkInBookButton() {
+        try {
+            CheckInBookWindow.INSTANCE.init();
+            CheckInBookWindow.INSTANCE.setDataAndShow(memberId.getText(), memberName.getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

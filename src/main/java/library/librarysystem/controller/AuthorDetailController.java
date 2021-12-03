@@ -37,7 +37,6 @@ public class AuthorDetailController extends Stage {
     @FXML
     public void deleteAuthorButton() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setAlertType(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("");
         alert.setHeaderText("Delete " + author.getFirstName() + " " + author.getLastName().trim() + " ?");
         alert.setContentText("");

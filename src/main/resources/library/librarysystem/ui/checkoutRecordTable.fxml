@@ -4,11 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="225.0" prefHeight="256.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.CheckoutRecordEntryController">
+<AnchorPane minHeight="225.0" prefHeight="281.0" prefWidth="463.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.CheckoutRecordEntryController">
     <children>
-        <TableView fx:id="table" layoutX="14.0" layoutY="80.0" prefHeight="176.0" prefWidth="467.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+        <TableView fx:id="table" layoutX="14.0" layoutY="80.0" prefHeight="221.0" prefWidth="525.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
             <columns>
                 <TableColumn fx:id="isbn" prefWidth="75.0" text="ISBN" />
                 <TableColumn fx:id="title" prefWidth="75.0" text="Title" />
@@ -20,10 +22,16 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
             </columnResizePolicy>
         </TableView>
-        <Label layoutX="54.0" layoutY="20.0" text="Member Id" />
-        <Label layoutX="55.0" layoutY="48.0" text="Member Name" />
+        <Label layoutX="81.0" layoutY="20.0" text="Member Id" />
+        <Label layoutX="81.0" layoutY="48.0" text="Name" />
         <Label fx:id="memberId" layoutX="173.0" layoutY="20.0" prefHeight="16.0" prefWidth="96.0" text="" />
         <Label fx:id="memberName" layoutX="173.0" layoutY="48.0" prefHeight="16.0" prefWidth="96.0" text="" />
-      <Button fx:id="printButton" layoutX="376.0" layoutY="44.0" mnemonicParsing="false" onAction="#printCheckoutRecord" text="Print Records" />
+        <Button fx:id="printButton" layoutX="296.0" layoutY="44.0" mnemonicParsing="false" onAction="#printCheckoutRecord" prefHeight="26.0" prefWidth="114.0" text="Print Records" />
+        <Button layoutX="296.0" layoutY="8.0" mnemonicParsing="false" onAction="#checkInBookButton" prefHeight="26.0" prefWidth="114.0" text="Checkin Book" />
+        <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="22.0" layoutY="21.0" onMouseClicked="#onBackPressed" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@back.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

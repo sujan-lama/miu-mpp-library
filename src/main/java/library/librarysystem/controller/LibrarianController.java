@@ -1,19 +1,19 @@
 package library.librarysystem.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
+import library.librarysystem.ui.CheckoutRecordTableWindow;
 import library.librarysystem.ui.LibrarianWindow;
 import library.librarysystem.ui.LoginWindow;
-import library.librarysystem.ui.Start;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class LibrarianController extends Stage {
 
@@ -27,28 +27,45 @@ public class LibrarianController extends Stage {
     @FXML
     private TextField isbnField;
 
-    @FXML
-    private Label messageBar;
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML
-    public void handleSearchButtonAction() {
+    public void checkStatusAction() {
         String memberId = memberField.getText();
         String isbn = isbnField.getText();
+        if (memberId.isEmpty() && isbn.isEmpty()) {
+            showAlertDialog(alert, "Enter member id and ISBN number of book to view status");
+            return;
+        }
+        if(isbn.isEmpty()) {
+            showAlertDialog(alert, "Enter ISBN number");
+            return;
+        }
+        if(memberId.isEmpty()) {
+            showAlertDialog(alert, "Enter member id");
+            return;
+        }
         ControllerInterface c = new SystemController();
         currentMemberId = memberId;
         currentMemberName = c.getMemberById(memberId) != null ?
                 c.getMemberById(memberId).getFirstName() + " "
                         + c.getMemberById(memberId).getLastName() : "";
         if (isBookAvailable(memberId, isbn, c)) return;
-        c.createCheckOutRecordEntry(memberId, isbn);
-        showTable();
+
+        alert.setAlertType(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Checkout is possible. Do you want to add a checkout record for this book?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK) {
+            c.createCheckOutRecordEntry(memberId, isbn);
+            showTable();
+        }
 
     }
 
     private boolean isBookAvailable(String memberId, String isbn, ControllerInterface c) {
         if (!c.isBookAvailable(memberId, isbn)) {
-            messageBar.setTextFill(Start.Colors.red);
-            messageBar.setText("Item is not available.");
+            showAlertDialog(alert, "Book is not available for checkout");
             return true;
         }
         return false;
@@ -57,13 +74,15 @@ public class LibrarianController extends Stage {
     @FXML
     public void handleViewButtonAction() {
         String memberId = memberField.getText();
-        String isbn = isbnField.getText();
+        if (memberId.isEmpty()) {
+            showAlertDialog(alert, "Enter member id");
+            return;
+        }
         ControllerInterface c = new SystemController();
         currentMemberId = memberId;
         LibraryMember libraryMember = c.getMemberById(memberId);
-        if (libraryMember == null || libraryMember.getCheckoutRecord() == null) {
-            messageBar.setTextFill(Start.Colors.red);
-            messageBar.setText("Item is not available.");
+        if (libraryMember == null) {
+            showAlertDialog(alert, "No member id found for id " + memberId);
         } else {
             currentMemberName =
                     c.getMemberById(memberId).getFirstName() + " "
@@ -72,23 +91,24 @@ public class LibrarianController extends Stage {
         }
     }
 
+    private void showAlertDialog(Alert alert, String contentText) {
+        alert.setAlertType(Alert.AlertType.ERROR);
+        alert.setHeaderText("");
+        alert.setContentText(contentText);
+        alert.show();
+    }
+
     private void showTable() {
-        messageBar.setText("");
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                Start.class.getResource("checkoutRecordTable.fxml"));
         try {
-            Start.hideAllWindows();
-            Scene scene = new Scene(fxmlLoader.load(), 480, 360);
-            scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
-            setScene(scene);
-            show();
+            LibrarianWindow.INSTANCE.hide();
+            CheckoutRecordTableWindow.INSTANCE.init();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void onBackPressed() {
+    public void logout() {
         ControllerInterface ci = new SystemController();
         ci.logout();
         LibrarianWindow.INSTANCE.hide();

@@ -35,6 +35,11 @@ public class AdminController extends Stage {
     }
 
     @FXML
+    public void searchBooks(ActionEvent event) {
+        AdminWindow.INSTANCE.gotoSearchBooks();
+    }
+
+    @FXML
     public void viewOverdueBooks(ActionEvent event) {
         AdminWindow.INSTANCE.gotoOverdueBooks();
     }
