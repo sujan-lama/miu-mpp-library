@@ -40,13 +40,13 @@ public class Main {
     }
 
     //Returns a list of all isbns of  Books that have multiple authors
-    public static List<String> allHavingMultipleAuthors() {
+    public static List<Book> allHavingMultipleAuthors() {
         DataAccess da = new DataAccessFacade();
         Collection<Book> books = da.readBooksMap().values();
         List<Book> bs = new ArrayList<>();
         bs.addAll(books);
         //implement
-        return null;
+        return bs;
 
     }
 

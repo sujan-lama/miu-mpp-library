@@ -25,6 +25,10 @@ public class Person implements Serializable {
 	public Address getAddress() {
 		return address;
 	}
+
+	public String getFirstAndLastName(){
+		return firstName +" "+ lastName;
+	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
