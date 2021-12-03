@@ -1,8 +1,10 @@
 package library.librarysystem.controller;
 
+import de.vandermeer.asciitable.AsciiTable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import library.librarysystem.business.CheckoutRecordEntry;
 import library.librarysystem.dataaccess.DataAccessFacade;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -40,7 +41,7 @@ public class CheckoutRecordEntryController implements Initializable {
     @FXML
     private Button printButton;
 
-    public ObservableList<CheckoutRecordEntry> list = FXCollections.observableArrayList(
+    public ObservableList<CheckoutRecordEntry> checkoutRecordEntries = FXCollections.observableArrayList(
             DataAccessFacade.getCheckoutRecordEntries(LibrarianController.currentMemberId)
     );
 
@@ -56,11 +57,26 @@ public class CheckoutRecordEntryController implements Initializable {
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getBookCopy().getCopyNum())));
         checkoutDate.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
         dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        table.setItems(list);
+        table.setItems(checkoutRecordEntries);
     }
 
     @FXML
     public void printCheckoutRecord(ActionEvent actionEvent){
-        System.out.println("bimgmgmmgsm");
+
+        AsciiTable asciiTable = new AsciiTable();
+        asciiTable.addRule();
+        asciiTable.addRow("ISBN", "Title", "Copy Num", "Checkout Date", "Due Date");
+        asciiTable.addRule();
+        checkoutRecordEntries.forEach(checkoutRecordEntry -> {
+            asciiTable.addRow(
+                    checkoutRecordEntry.getBookCopy().getBook().getIsbn(),
+                    checkoutRecordEntry.getBookCopy().getBook().getTitle(),
+                    checkoutRecordEntry.getBookCopy().getCopyNum(),
+                    checkoutRecordEntry.getCheckoutDate(),
+                    checkoutRecordEntry.getDueDate()
+            );
+            asciiTable.addRule();
+        });
+        System.out.println(asciiTable.render());
     }
 }

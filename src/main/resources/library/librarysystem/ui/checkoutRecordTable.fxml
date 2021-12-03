@@ -24,6 +24,6 @@
         <Label layoutX="55.0" layoutY="48.0" text="Member Name" />
         <Label fx:id="memberId" layoutX="173.0" layoutY="20.0" prefHeight="16.0" prefWidth="96.0" text="" />
         <Label fx:id="memberName" layoutX="173.0" layoutY="48.0" prefHeight="16.0" prefWidth="96.0" text="" />
-      <Button fx:id="printButton" layoutX="376.0" layoutY="44.0" mnemonicParsing="false" onAction="#printCheckoutRecord" text="Print" />
+      <Button fx:id="printButton" layoutX="376.0" layoutY="44.0" mnemonicParsing="false" onAction="#printCheckoutRecord" text="Print Records" />
     </children>
 </AnchorPane>
