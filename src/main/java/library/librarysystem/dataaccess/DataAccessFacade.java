@@ -1,15 +1,18 @@
 package library.librarysystem.dataaccess;
 
 
-import library.librarysystem.business.Book;
-import library.librarysystem.business.LibraryMember;
+import library.librarysystem.business.*;
 
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class DataAccessFacade implements DataAccess {
@@ -33,7 +36,58 @@ public class DataAccessFacade implements DataAccess {
 
     public boolean isBookAvailable(String memberId, String isbn) {
         return readMemberMap().get(memberId) != null
-                && readBooksMap().get(isbn) != null;
+                && readBooksMap().get(isbn) != null
+                && isCopyAvailable(readBooksMap().get(isbn));
+    }
+
+    public boolean isCopyAvailable(Book book) {
+        return book.getCopies() != null && book.getCopies().length != 0
+                && isBookCopyAvailable(book.getCopies());
+    }
+
+    private boolean isBookCopyAvailable(BookCopy[] copies) {
+        boolean flag = false;
+        for (BookCopy copy : copies) {
+            if (copy.isAvailable()) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    @Override
+    public void createCheckOutRecordEntry(String memberId, String isbn) {
+        LibraryMember member = readMemberMap().get(memberId);
+        Book book = readBooksMap().get(isbn);
+
+        List<BookCopy> bookCopies = Arrays.stream(book.getCopies()).
+                filter(BookCopy::isAvailable).collect(Collectors.toList());
+
+        if (bookCopies.size() == 0) {
+            return;
+        }
+
+        if (member.getCheckoutRecord() == null) {
+            member.setCheckoutRecord(new CheckoutRecord());
+        }
+
+        if (member.getCheckoutRecord().getCheckoutRecordEntries() == null) {
+            member.getCheckoutRecord().setCheckoutRecordEntries(new ArrayList<>());
+        }
+
+
+        for (BookCopy bookCopy : book.getCopies()) {
+            if (bookCopy.isAvailable()) {
+                bookCopy.changeAvailability();
+                member.getCheckoutRecord().getCheckoutRecordEntries()
+                        .add(new CheckoutRecordEntry(LocalDate.now(), LocalDate.now().plusDays(21),
+                                bookCopy, member.getCheckoutRecord()));
+                break;
+            }
+        }
+        updateBook(book);
+        updateLibraryMember(member);
     }
 
     @SuppressWarnings("unchecked")
@@ -63,6 +117,23 @@ public class DataAccessFacade implements DataAccess {
     /////load methods - these place test data into the library.librarysystem.storage area
     ///// - used just once at startup
 
+    public static List<CheckoutRecordEntry> getCheckoutRecordEntries(String memberId) {
+        HashMap<String, LibraryMember> memberHashMap = (HashMap<String, LibraryMember>) readFromStorage(
+                StorageType.MEMBERS);
+        return memberHashMap.get(memberId).getCheckoutRecord().getCheckoutRecordEntries();
+    }
+
+    void updateBook(Book book) {
+        HashMap<String, Book> map = readBooksMap();
+        map.put(book.getIsbn(), book);
+        saveToStorage(StorageType.BOOKS, map);
+    }
+
+    void updateLibraryMember(LibraryMember member) {
+        HashMap<String, LibraryMember> map = readMemberMap();
+        map.put(member.getMemberId(), member);
+        saveToStorage(StorageType.MEMBERS, map);
+    }
 
     static void loadBookMap(List<Book> bookList) {
         HashMap<String, Book> books = new HashMap<String, Book>();

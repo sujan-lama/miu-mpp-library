@@ -61,13 +61,4 @@ public class LoginController extends Stage {
         Start.hideAllWindows();
         Start.primStage().show();
     }
-
-    @FXML
-    public void submit() {
-        ControllerInterface c = new SystemController();
-        c.saveMember(new LibraryMember("101", "sujan", "maka", "tel",
-                new Address("57 kilvert", "Boston", "MA", "09898")));
-        messageBar.setTextFill(Start.Colors.green);
-        messageBar.setText("Save successful");
-    }
 }

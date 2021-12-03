@@ -1,24 +1,29 @@
 package library.librarysystem.business;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 final public class CheckoutRecordEntry implements Serializable {
-    private Date checkoutDate;
-    private Date dueDate;
-    private BookCopy bookCopy;
 
-    public CheckoutRecordEntry(Date checkoutDate, Date dueDate, BookCopy bookCopy) {
+    private static final long serialVersionUID = -63976228084869815L;
+
+    private LocalDate checkoutDate;
+    private LocalDate dueDate;
+    private BookCopy bookCopy;
+    private CheckoutRecord checkoutRecord;
+
+    public CheckoutRecordEntry(LocalDate checkoutDate, LocalDate dueDate, BookCopy bookCopy, CheckoutRecord checkoutRecord) {
         this.checkoutDate = checkoutDate;
         this.dueDate = dueDate;
         this.bookCopy = bookCopy;
+        this.checkoutRecord = checkoutRecord;
     }
 
-    public Date getCheckoutDate() {
+    public LocalDate getCheckoutDate() {
         return checkoutDate;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
