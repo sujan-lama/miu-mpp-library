@@ -3,6 +3,7 @@ package library.librarysystem.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+import library.librarysystem.business.Book;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
@@ -43,7 +44,9 @@ public class StartController extends Stage {
             }
         }
         ControllerInterface ci = new SystemController();
-        List<String> ids = ci.allBookIds();
+        List<Book> books = ci.allBooks();
+        List<String> ids = new ArrayList<>(books.stream().map(Book::getIsbn).toList());
+
         Collections.sort(ids);
         StringBuilder sb = new StringBuilder();
         for (String s : ids) {

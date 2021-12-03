@@ -12,6 +12,7 @@ import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.ui.AddLibraryMemberWindow;
+import library.librarysystem.utils.TextFieldUtils;
 
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class AddLibraryMemberController extends Stage {
         }
 
         if (member != null) {
-            addLibraryMember(newMember, false);
+            addLibraryMember(newMember, true);
             return;
         }
         boolean checkIdDifferent = checkIdDifferent(textId);
@@ -122,6 +123,9 @@ public class AddLibraryMemberController extends Stage {
 
     public void setData(LibraryMember member) {
         this.member = member;
+        id.setTextFormatter(TextFieldUtils.integerTextFormatter());
+        phoneNumber.setTextFormatter(TextFieldUtils.integerTextFormatter());
+        zip.setTextFormatter(TextFieldUtils.integerTextFormatter());
         if (member == null) {
             label.setText("Add Library Member");
             submit.setText("Submit");

@@ -40,7 +40,7 @@ public class AddLibraryMemberWindow extends Stage implements LibWindow {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        LibraryMemberDetailWindow.INSTANCE.setLibraryMember(member, libraryMember==null);
+        LibraryMemberDetailWindow.INSTANCE.setLibraryMember(member);
     }
 
     @Override

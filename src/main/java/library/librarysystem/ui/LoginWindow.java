@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import library.librarysystem.business.SystemController;
 import library.librarysystem.dataaccess.Auth;
 
 import java.io.IOException;
@@ -48,10 +47,10 @@ public class LoginWindow extends Stage implements LibWindow {
         try {
             switch (currentAuth) {
                 case ADMIN -> AdminWindow.INSTANCE.init();
-                case LIBRARIAN -> System.out.println("librarian");
+                case LIBRARIAN -> LibrarianWindow.INSTANCE.init();
                 case BOTH -> System.out.println("both");
+
             }
-            AdminWindow.INSTANCE.init();
         } catch (IOException e) {
             e.printStackTrace();
         }

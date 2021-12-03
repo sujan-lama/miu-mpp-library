@@ -34,7 +34,13 @@ public class AdminWindow extends Stage implements LibWindow {
     }
 
     public void gotoAddBooks() {
-
+        hide();
+        try {
+            AddBookWindow.INSTANCE.init();
+            AddBookWindow.INSTANCE.setDataAndShow(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isInitialized() {
@@ -49,6 +55,15 @@ public class AdminWindow extends Stage implements LibWindow {
         hide();
         try {
             ListLibraryMemberWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void gotoViewBooks() {
+        hide();
+        try {
+            ListBookWindow.INSTANCE.init();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,7 +5,6 @@ import library.librarysystem.dataaccess.DataAccess;
 import library.librarysystem.dataaccess.DataAccessFacade;
 import library.librarysystem.dataaccess.User;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,6 +38,12 @@ public class SystemController implements ControllerInterface {
     }
 
     @Override
+    public void saveMember(LibraryMember member) {
+        DataAccess da = new DataAccessFacade();
+        da.saveNewMember(member);
+    }
+
+    @Override
     public void editMember(LibraryMember member) {
         DataAccess da = new DataAccessFacade();
         da.editMember(member);
@@ -51,17 +56,28 @@ public class SystemController implements ControllerInterface {
     }
 
     @Override
-    public List<String> allBookIds() {
+    public List<Book> allBooks() {
         DataAccess da = new DataAccessFacade();
-        List<String> retval = new ArrayList<>();
-        retval.addAll(da.readBooksMap().keySet());
-        return retval;
+        return da.readBooksMap().values().stream().toList();
+
     }
 
     @Override
-    public void saveMember(LibraryMember member) {
+    public void saveBook(Book book) {
         DataAccess da = new DataAccessFacade();
-        da.saveNewMember(member);
+        da.saveBook(book);
+    }
+
+    @Override
+    public void deleteBook(Book book) {
+        DataAccess da = new DataAccessFacade();
+        da.deleteBook(book);
+    }
+
+    @Override
+    public void editBook(Book book) {
+        DataAccess da = new DataAccessFacade();
+        da.editBook(book);
     }
 
     @Override

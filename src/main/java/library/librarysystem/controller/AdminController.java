@@ -20,10 +20,18 @@ public class AdminController extends Stage {
 
 
     @FXML
-    public void viewLibraryMember(ActionEvent event) {AdminWindow.INSTANCE.gotoViewLibraryMember();}
+    public void viewLibraryMember(ActionEvent event) {
+        AdminWindow.INSTANCE.gotoViewLibraryMember();
+    }
+
     @FXML
     public void addBooks(ActionEvent event) {
         AdminWindow.INSTANCE.gotoAddBooks();
+    }
+
+    @FXML
+    public void viewBooks(ActionEvent event) {
+        AdminWindow.INSTANCE.gotoViewBooks();
     }
 
     @FXML

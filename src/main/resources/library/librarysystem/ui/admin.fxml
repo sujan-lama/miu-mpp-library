@@ -30,6 +30,6 @@
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="276.0" layoutY="169.0" mnemonicParsing="false"
                 onAction="#viewLibraryMember" prefHeight="47.0" prefWidth="168.0" text="View Library Member"/>
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="319.0" mnemonicParsing="false"
-                onAction="#addBooks" prefHeight="47.0" prefWidth="168.0" text="View Books"/>
+                onAction="#viewBooks" prefHeight="47.0" prefWidth="168.0" text="View Books"/>
     </children>
 </AnchorPane>
