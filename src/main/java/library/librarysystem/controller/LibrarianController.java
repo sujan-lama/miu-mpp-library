@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
+import library.librarysystem.ui.LibrarianWindow;
+import library.librarysystem.ui.LoginWindow;
 import library.librarysystem.ui.Start;
 
 import java.io.IOException;
@@ -87,8 +89,14 @@ public class LibrarianController extends Stage {
 
     @FXML
     public void onBackPressed() {
-        Start.hideAllWindows();
-        Start.primStage().show();
-        hide();
+        ControllerInterface ci = new SystemController();
+        ci.logout();
+        LibrarianWindow.INSTANCE.hide();
+        try {
+            LoginWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        LoginWindow.INSTANCE.show();
     }
 }

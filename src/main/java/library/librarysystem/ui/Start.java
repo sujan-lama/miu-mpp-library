@@ -1,28 +1,12 @@
 package library.librarysystem.ui;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import library.librarysystem.business.ControllerInterface;
-import library.librarysystem.business.SystemController;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 
 public class Start extends Application {
@@ -41,12 +25,6 @@ public class Start extends Application {
         public static Color red = Color.FIREBRICK;
     }
 
-//    private static Stage[] allWindows = {
-//            LoginWindow.INSTANCE,
-//            AllMembersWindow.INSTANCE,
-//            AllBooksWindow.INSTANCE
-//    };
-
     public static void hideAllWindows() {
         primStage.hide();
         Stage[] allWindows = new Stage[]{LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE};
@@ -56,103 +34,12 @@ public class Start extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         primStage = primaryStage;
         primaryStage.setTitle("Main Page");
 
-        VBox topContainer = new VBox();
-        topContainer.setId("top-container");
-        MenuBar mainMenu = new MenuBar();
-        VBox imageHolder = new VBox();
-        Image image = new Image(Start.class.getResource("library.jpg").toExternalForm(), 400, 300, false, false);
-
-        // simply displays in ImageView the image as is
-        ImageView iv = new ImageView();
-        iv.setImage(image);
-        imageHolder.getChildren().add(iv);
-        imageHolder.setAlignment(Pos.CENTER);
-        HBox splashBox = new HBox();
-        Label splashLabel = new Label("The Library System");
-        splashLabel.setFont(Font.font("Trajan Pro", FontWeight.BOLD, 30));
-        splashBox.getChildren().add(splashLabel);
-        splashBox.setAlignment(Pos.CENTER);
-
-        topContainer.getChildren().add(mainMenu);
-        topContainer.getChildren().add(splashBox);
-        topContainer.getChildren().add(imageHolder);
-
-        Menu optionsMenu = new Menu("Options");
-        MenuItem login = new MenuItem("Login");
-
-        login.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                hideAllWindows();
-                if (!LoginWindow.INSTANCE.isInitialized()) {
-                    try {
-                        LoginWindow.INSTANCE.init();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                LoginWindow.INSTANCE.clear();
-                LoginWindow.INSTANCE.show();
-            }
-        });
-
-        MenuItem bookIds = new MenuItem("All Book Ids");
-        bookIds.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                hideAllWindows();
-                if (!AllBooksWindow.INSTANCE.isInitialized()) {
-                    try {
-                        AllBooksWindow.INSTANCE.init();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                ControllerInterface ci = new SystemController();
-                List<String> ids = ci.allBookIds();
-                Collections.sort(ids);
-                StringBuilder sb = new StringBuilder();
-                for (String s : ids) {
-                    sb.append(s).append("\n");
-                }
-                AllBooksWindow.INSTANCE.setData(sb.toString());
-                AllBooksWindow.INSTANCE.show();
-            }
-        });
-
-        MenuItem memberIds = new MenuItem("All Member Ids");
-        memberIds.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                hideAllWindows();
-                if (!AllMembersWindow.INSTANCE.isInitialized()) {
-                    try {
-                        AllMembersWindow.INSTANCE.init();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                ControllerInterface ci = new SystemController();
-                List<String> ids = ci.allMemberIds();
-                Collections.sort(ids);
-                System.out.println(ids);
-                StringBuilder sb = new StringBuilder();
-                for (String s : ids) {
-                    sb.append(s + "\n");
-                }
-                System.out.println(sb.toString());
-                AllMembersWindow.INSTANCE.setData(sb.toString());
-                AllMembersWindow.INSTANCE.show();
-            }
-        });
-        optionsMenu.getItems().addAll(login, bookIds, memberIds);
-
-        mainMenu.getMenus().addAll(optionsMenu);
-        Scene scene = new Scene(topContainer, 420, 375);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 420, 375);
         primaryStage.setScene(scene);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         primaryStage.show();

@@ -14,7 +14,19 @@ public interface DataAccess {
 
     public HashMap<String, LibraryMember> readMemberMap();
 
+    //member crud
     public void saveNewMember(LibraryMember member);
+
+    public void deleteMember(LibraryMember member);
+
+    public void editMember(LibraryMember member);
+
+    //Book
+    public void saveBook(Book book);
+
+    public void deleteBook(Book book);
+
+    public void editBook(Book book);
 
     boolean isBookAvailable(String memberId, String isbn);
 
