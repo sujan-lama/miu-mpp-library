@@ -47,6 +47,13 @@ final public class Book implements Serializable {
 		newArr[copies.length] = new BookCopy(this, copies.length +1, true);
 		copies = newArr;
 	}
+
+	public void addCopy(int numOfCopies) {
+		BookCopy[] newArr = new BookCopy[copies.length + numOfCopies];
+		System.arraycopy(copies, 0, newArr, 0, copies.length);
+		newArr[copies.length] = new BookCopy(this, copies.length +numOfCopies, true);
+		copies = newArr;
+	}
 	
 	
 	@Override

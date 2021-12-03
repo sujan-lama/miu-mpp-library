@@ -33,6 +33,7 @@ public class AllMembersWindow extends Stage implements LibWindow {
     }
 
     public void init() throws IOException {
+        super.setTitle("All Members");
         loader = new FXMLLoader(AllBooksWindow.class.getResource("allmember.fxml"));
         Scene scene = new Scene(loader.load(), 480, 450);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
