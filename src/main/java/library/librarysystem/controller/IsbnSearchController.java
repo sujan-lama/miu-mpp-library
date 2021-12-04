@@ -147,6 +147,7 @@ public class IsbnSearchController extends Stage {
             book.addCopy(isbn.getText(), numOfCopies);
             messageBar.setTextFill(Start.Colors.green);
             messageBar.setText("Book copies added successfully.");
+            numberOfCopies.setText(String.valueOf(book.getNumCopies() + numOfCopies));
         }
     }
 

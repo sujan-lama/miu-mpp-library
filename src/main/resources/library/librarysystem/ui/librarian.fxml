@@ -14,7 +14,7 @@
             </font>
         </Label>
         <TextField fx:id="memberField" layoutX="95.0" layoutY="122.0" prefHeight="26.0" prefWidth="193.0" />
-        <Button layoutX="322.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleViewButtonAction" prefHeight="26.0" prefWidth="114.0" text="View Record" textAlignment="CENTER" wrapText="true" />
+        <Button layoutX="318.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleViewButtonAction" prefHeight="26.0" text="View Record" textAlignment="CENTER" wrapText="true" />
         <Label layoutX="95.0" layoutY="88.0" prefHeight="18.0" prefWidth="183.0" text="Enter Member Id">
          <font>
             <Font size="14.0" />
@@ -24,7 +24,7 @@
             <Font size="14.0" />
          </font></Label>
         <TextField fx:id="isbnField" layoutX="94.0" layoutY="195.0" prefHeight="26.0" prefWidth="194.0" />
-        <Button layoutX="118.0" layoutY="238.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" prefWidth="137.0" text="View Books Status" />
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="135.0" layoutY="238.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" text="View Books Status" />
         <Button fx:id="logout" layoutX="379.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
     </children>
 </AnchorPane>
