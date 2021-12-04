@@ -1,7 +1,8 @@
 module library.librarysystem {
     requires javafx.controls;
     requires javafx.fxml;
-
+    requires ascii.utf.themes;
+    requires asciitable;
 
 //    opens library.librarysystem to javafx.fxml;
     exports library.librarysystem.ui;
