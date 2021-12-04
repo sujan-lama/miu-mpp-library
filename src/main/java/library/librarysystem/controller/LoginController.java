@@ -26,6 +26,12 @@ public class LoginController extends Stage {
     @FXML
     public void loginValid(ActionEvent event) {
 
+        if (userTextField.getText().isEmpty() || passwordTextField.getText().isEmpty()) {
+            messageBar.setTextFill(Start.Colors.red);
+            messageBar.setText("Username and password is required");
+            return;
+        }
+
         messageBar.setText("");
         try {
             ControllerInterface c = new SystemController();
