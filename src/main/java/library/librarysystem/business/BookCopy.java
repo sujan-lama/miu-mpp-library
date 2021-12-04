@@ -16,7 +16,8 @@ final public class BookCopy implements Serializable {
 	private String memberName;
 	private LocalDate dueDate;
 
-	BookCopy(Book book, int copyNum, boolean isAvailable) {
+	//made it public for creating test data for showing overdue checkouts
+	public BookCopy(Book book, int copyNum, boolean isAvailable) {
 		this.book = book;
 		this.copyNum = copyNum;
 		this.isAvailable = isAvailable;

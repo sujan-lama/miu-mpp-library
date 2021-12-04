@@ -1,11 +1,9 @@
 package library.librarysystem.dataaccess;
 
 
-import library.librarysystem.business.Address;
-import library.librarysystem.business.Author;
-import library.librarysystem.business.Book;
-import library.librarysystem.business.LibraryMember;
+import library.librarysystem.business.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -60,7 +58,26 @@ public class TestData {
         libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));
         members.add(libraryMember);
 
+        //adding member with due date
+        libraryMember = new LibraryMember("1005", "Vasco De", "Gama", "981-100-2010", addresses.get(7));
+        setCheckoutRecord(libraryMember);
+        members.add(libraryMember);
+
+        //adding member with due date
+        libraryMember = new LibraryMember("1006", "Jim", "Morrission", "342-342-1200", addresses.get(7));
+        setCheckoutRecord(libraryMember);
+        members.add(libraryMember);
+
         DataAccessFacade.loadMemberMap(members);
+    }
+
+    private void setCheckoutRecord(LibraryMember libraryMember) {
+        CheckoutRecord checkoutRecord = new CheckoutRecord();
+        BookCopy bookCopy = new BookCopy(allBooks.get(0), 1, false);
+        CheckoutRecordEntry checkoutRecordEntry = new CheckoutRecordEntry(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1),
+                bookCopy, checkoutRecord );
+        checkoutRecord.setCheckoutRecordEntries(List.of(checkoutRecordEntry));
+        libraryMember.setCheckoutRecord(checkoutRecord);
     }
 
     ///////////// DATA //////////////
