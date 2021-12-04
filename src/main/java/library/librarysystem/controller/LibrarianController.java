@@ -2,6 +2,7 @@ package library.librarysystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -10,7 +11,6 @@ import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.ui.CheckoutRecordTableWindow;
 import library.librarysystem.ui.LibrarianWindow;
-import library.librarysystem.ui.LoginWindow;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -20,6 +20,8 @@ public class LibrarianController extends Stage {
     public static String currentMemberId = null;
     public static String currentMemberName = null;
 
+    @FXML
+    public Button logout;
 
     @FXML
     private TextField memberField;
@@ -37,11 +39,11 @@ public class LibrarianController extends Stage {
             showAlertDialog(alert, "Enter member id and ISBN number of book to view status");
             return;
         }
-        if(isbn.isEmpty()) {
+        if (isbn.isEmpty()) {
             showAlertDialog(alert, "Enter ISBN number");
             return;
         }
-        if(memberId.isEmpty()) {
+        if (memberId.isEmpty()) {
             showAlertDialog(alert, "Enter member id");
             return;
         }
@@ -107,16 +109,12 @@ public class LibrarianController extends Stage {
         }
     }
 
+    public void setFromSuperAdmin() {
+        logout.setText("<- Go back");
+    }
+
     @FXML
     public void logout() {
-        ControllerInterface ci = new SystemController();
-        ci.logout();
-        LibrarianWindow.INSTANCE.hide();
-        try {
-            LoginWindow.INSTANCE.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        LoginWindow.INSTANCE.show();
+        LibrarianWindow.INSTANCE.logOut();
     }
 }

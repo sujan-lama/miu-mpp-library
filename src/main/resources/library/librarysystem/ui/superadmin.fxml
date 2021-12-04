@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="308.0" prefWidth="386.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.SuperAdminController">
+    <children>
+        <Label alignment="CENTER" layoutX="114.0" layoutY="35.0" prefHeight="42.0" prefWidth="157.0" text="SuperAdmin">
+            <font>
+                <Font name="Calibri Bold" size="26.0" />
+            </font>
+        </Label>
+        <Button layoutX="113.0" layoutY="111.0" mnemonicParsing="false" onAction="#gotoAdminControl" prefHeight="42.0" prefWidth="158.0" text="Go to admin controls" />
+        <Button layoutX="114.0" layoutY="199.0" mnemonicParsing="false" onAction="#gotoLibrarianControl" prefHeight="42.0" prefWidth="158.0" text="Go to Librarian Control" />
+      <Button layoutX="307.0" layoutY="43.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+    </children>
+</AnchorPane>

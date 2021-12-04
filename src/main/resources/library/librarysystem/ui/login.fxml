@@ -22,8 +22,8 @@
                 <Font size="14.0"/>
             </font>
         </Label>
-        <TextField fx:id="userTextField" layoutX="226.0" layoutY="133.0" text="102"/>
-        <PasswordField fx:id="passwordTextField" layoutX="226.0" layoutY="193.0" text="abc"/>
+        <TextField fx:id="userTextField" layoutX="226.0" layoutY="133.0" text=""/>
+        <PasswordField fx:id="passwordTextField" layoutX="226.0" layoutY="193.0" text=""/>
         <Button fx:id="btn" layoutX="324.0" layoutY="279.0" mnemonicParsing="false" onAction="#loginValid"
                 text="Login"/>
         <Label fx:id="messageBar" layoutX="86.0" layoutY="241.0" prefHeight="18.0" prefWidth="289.0" text=""

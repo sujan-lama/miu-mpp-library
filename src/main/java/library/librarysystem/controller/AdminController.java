@@ -2,6 +2,7 @@ package library.librarysystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.SystemController;
@@ -12,6 +13,9 @@ import java.io.IOException;
 
 public class AdminController extends Stage {
 
+
+    @FXML
+    public Button logout;
 
     @FXML
     public void addLibraryMember(ActionEvent event) {
@@ -46,16 +50,10 @@ public class AdminController extends Stage {
 
     @FXML
     public void logout(ActionEvent event) {
-        ControllerInterface controller = new SystemController();
-        controller.logout();
-        if (!LoginWindow.INSTANCE.isInitialized()) {
-            try {
-                LoginWindow.INSTANCE.init();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        AdminWindow.INSTANCE.hide();
-        LoginWindow.INSTANCE.show();
+        AdminWindow.INSTANCE.logout();
+    }
+
+    public void setFromSuperAdmin() {
+        logout.setText("<- Go back");
     }
 }

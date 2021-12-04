@@ -16,7 +16,7 @@
                 onAction="#addLibraryMember" prefHeight="47.0" prefWidth="168.0" text="Add Library Member"/>
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="63.0" layoutY="319.0" mnemonicParsing="false"
                 onAction="#addBooks" prefHeight="47.0" prefWidth="168.0" text="Add Books"/>
-        <Button layoutX="444.0" layoutY="54.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
+        <Button fx:id="logout" layoutX="444.0" layoutY="54.0" mnemonicParsing="false" onAction="#logout" text="Logout"/>
         <Label layoutX="63.0" layoutY="118.0" prefHeight="26.0" prefWidth="203.0" text="Library Member">
             <font>
                 <Font name="Bodoni MT" size="16.0"/>
@@ -37,7 +37,8 @@
                 onAction="#viewLibraryMember" prefHeight="47.0" prefWidth="168.0" text="View Library Member"/>
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="319.0" mnemonicParsing="false"
                 onAction="#viewBooks" prefHeight="47.0" prefWidth="168.0" text="View Books"/>
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="396.0" mnemonicParsing="false" onAction="#viewOverdueBooks" prefHeight="47.0"
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="396.0" mnemonicParsing="false"
+                onAction="#viewOverdueBooks" prefHeight="47.0"
                 prefWidth="168.0" text="Check Overdue Books"/>
     </children>
 </AnchorPane>

@@ -19,6 +19,6 @@
         <Label layoutX="111.0" layoutY="164.0" prefHeight="18.0" text="Enter ISBN of book" />
         <TextField fx:id="isbnField" layoutX="110.0" layoutY="194.0" prefHeight="26.0" prefWidth="194.0" />
         <Button layoutX="173.0" layoutY="258.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="38.0" text="View Checkout Status" />
-        <Button layoutX="392.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+        <Button fx:id="logout" layoutX="392.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
     </children>
 </AnchorPane>

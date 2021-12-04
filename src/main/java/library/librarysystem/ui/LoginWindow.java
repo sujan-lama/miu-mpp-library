@@ -46,9 +46,15 @@ public class LoginWindow extends Stage implements LibWindow {
         Start.hideAllWindows();
         try {
             switch (currentAuth) {
-                case ADMIN -> AdminWindow.INSTANCE.init();
-                case LIBRARIAN -> LibrarianWindow.INSTANCE.init();
-                case BOTH -> System.out.println("both");
+                case ADMIN -> {
+                    AdminWindow.INSTANCE.setData(false);
+                    AdminWindow.INSTANCE.init();
+                }
+                case LIBRARIAN -> {
+                    AdminWindow.INSTANCE.setData(false);
+                    LibrarianWindow.INSTANCE.init();
+                }
+                case BOTH -> SuperAdminWindow.INSTANCE.init();
 
             }
         } catch (IOException e) {
