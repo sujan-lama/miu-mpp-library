@@ -77,4 +77,14 @@ public class AdminWindow extends Stage implements LibWindow {
             e.printStackTrace();
         }
     }
+
+    public void gotoSearchBooks() {
+        hide();
+        try {
+            SearchBooksWindow.INSTANCE.init();
+            SearchBooksWindow.INSTANCE.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

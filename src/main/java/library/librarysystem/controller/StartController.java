@@ -77,16 +77,4 @@ public class StartController extends Stage {
         AllMembersWindow.INSTANCE.show();
 
     }
-
-    @FXML
-    public void searchBook(ActionEvent event) {
-        Start.hideAllWindows();
-        try {
-            SearchBooksWindow.INSTANCE.init();
-            SearchBooksWindow.INSTANCE.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 }

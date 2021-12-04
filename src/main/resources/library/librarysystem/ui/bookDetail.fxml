@@ -9,35 +9,35 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="414.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.BookDetailController">
+<AnchorPane prefHeight="455.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.BookDetailController">
     <children>
         <Label alignment="CENTER" layoutX="187.0" layoutY="74.0" prefHeight="18.0" prefWidth="194.0" text="Book Detail">
             <font>
                 <Font name="Candara" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="64.0" layoutY="132.0" prefHeight="22.0" prefWidth="59.0" text="Title:">
+        <Label layoutX="64.0" layoutY="153.0" prefHeight="22.0" prefWidth="59.0" text="Title">
             <font>
                 <Font name="Calibri Light" size="16.0" />
             </font>
         </Label>
-        <Label fx:id="title" layoutX="187.0" layoutY="132.0" prefHeight="22.0" prefWidth="251.0">
+        <Label fx:id="title" layoutX="204.0" layoutY="153.0" prefHeight="22.0" prefWidth="251.0">
             <font>
                 <Font name="Calibri Light" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="64.0" layoutY="177.0" prefHeight="22.0" prefWidth="101.0" text="Max Checkout">
+        <Label layoutX="64.0" layoutY="187.0" prefHeight="22.0" prefWidth="101.0" text="Max Checkout">
             <font>
                 <Font name="Calibri Light" size="16.0" />
             </font>
         </Label>
-        <Label fx:id="maxCheckout" layoutX="187.0" layoutY="177.0" prefHeight="22.0" prefWidth="266.0">
+        <Label fx:id="maxCheckout" layoutX="201.0" layoutY="187.0" prefHeight="22.0" prefWidth="266.0">
             <font>
                 <Font name="Calibri Light" size="16.0" />
             </font>
         </Label>
         <Button layoutX="64.0" layoutY="73.0" mnemonicParsing="false" onAction="#goBack" text="&lt;- Go Back" />
-      <ListView fx:id="authorList" layoutX="66.0" layoutY="250.0" prefHeight="135.0" prefWidth="468.0" />
+      <ListView fx:id="authorList" layoutX="64.0" layoutY="292.0" prefHeight="135.0" prefWidth="468.0" />
       <MenuBar layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="533.0">
         <menus>
           <Menu mnemonicParsing="false" text="Options">
@@ -48,7 +48,27 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="64.0" layoutY="214.0" prefHeight="22.0" prefWidth="101.0" text="Authors">
+      <Label layoutX="64.0" layoutY="258.0" prefHeight="22.0" prefWidth="101.0" text="Authors :">
+         <font>
+            <Font name="Calibri Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="224.0" prefHeight="22.0" text="Number of copies">
+         <font>
+            <Font name="Calibri Light" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="numofCopies" layoutX="201.0" layoutY="224.0" prefHeight="22.0" prefWidth="266.0">
+         <font>
+            <Font name="Calibri Light" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="121.0" prefHeight="22.0" prefWidth="59.0" text="ISBN">
+         <font>
+            <Font name="Calibri Light" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="isbn" layoutX="204.0" layoutY="121.0" prefHeight="22.0" prefWidth="251.0">
          <font>
             <Font name="Calibri Light" size="16.0" />
          </font>
