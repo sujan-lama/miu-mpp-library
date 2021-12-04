@@ -26,8 +26,8 @@ public class AuthorDetailWindow extends Stage implements LibWindow {
         setScene(scene);
     }
 
-    public void setAuthor(Author author) {
-        ((AuthorDetailController) fxmlLoader.getController()).setData(author);
+    public void setAuthor(Author author, boolean fromAdd) {
+        ((AuthorDetailController) fxmlLoader.getController()).setData(author, fromAdd);
         show();
     }
 

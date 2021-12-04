@@ -19,7 +19,7 @@
             <Font name="Times New Roman Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="423.0" layoutY="19.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #00FFFF;" text="Login Now" textFill="WHITE">
+      <Button layoutX="423.0" layoutY="19.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #001e74;" text="Login Now" textFill="WHITE">
          <font>
             <Font name="Bell MT" size="16.0" />
          </font>

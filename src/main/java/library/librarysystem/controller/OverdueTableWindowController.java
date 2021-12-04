@@ -3,6 +3,7 @@ package library.librarysystem.controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -13,7 +14,10 @@ import library.librarysystem.business.Book;
 import library.librarysystem.business.BookCopy;
 import library.librarysystem.business.CheckoutRecordEntry;
 import library.librarysystem.dataaccess.DataAccessFacade;
+import library.librarysystem.ui.OverdueTableWindow;
+import library.librarysystem.ui.OverdueWindow;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -52,5 +56,14 @@ public class OverdueTableWindowController implements Initializable {
         libMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
         dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         table.setItems(list);
+    }
+
+    public void onBackPressed(ActionEvent event) {
+        OverdueTableWindow.INSTANCE.hide();
+        try {
+            OverdueWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
