@@ -21,9 +21,9 @@ public class AddBookWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
-
+        super.setTitle("Add Book");
         fxmlLoader = new FXMLLoader(getClass().getResource("addBook.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 620, 560);
+        Scene scene = new Scene(fxmlLoader.load(), 466, 548);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
     }

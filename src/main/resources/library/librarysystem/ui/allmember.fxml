@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="450.0" prefHeight="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane fx:id="anchor"  maxHeight="450.0" prefHeight="450.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="library.librarysystem.controller.AllMemberController">
     <children>
         <Label fx:id="allMemberLabel" layoutX="30.0" layoutY="32.0" prefHeight="42.0" prefWidth="150.0"

@@ -54,6 +54,6 @@ public class AdminController extends Stage {
     }
 
     public void setFromSuperAdmin() {
-        logout.setText("<- Go back");
+        logout.setText("Go back");
     }
 }

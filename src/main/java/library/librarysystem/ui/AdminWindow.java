@@ -19,9 +19,9 @@ public class AdminWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
-
+        super.setTitle("Admin Home Page");
         FXMLLoader fxmlLoader = new FXMLLoader(AdminWindow.class.getResource("admin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 540, 490);
+        Scene scene = new Scene(fxmlLoader.load(), 483, 477);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
         if (fromSuperAdmin)

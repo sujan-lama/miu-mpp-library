@@ -15,6 +15,7 @@ public class LibrarianWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
+        super.setTitle("Librarian Home Page");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("librarian.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 480, 360);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());

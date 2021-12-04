@@ -33,7 +33,8 @@ public class OverdueWindowController extends Stage {
             showTable();
         } else {
             messageBar.setTextFill(Start.Colors.red);
-            messageBar.setText("No overdue book copies found.");        }
+            messageBar.setText("No overdue book copies found.");
+        }
     }
 
     private void showTable() {
@@ -41,7 +42,7 @@ public class OverdueWindowController extends Stage {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 Start.class.getResource("overdueTable.fxml"));
         try {
-            Start.hideAllWindows();
+            OverdueWindow.INSTANCE.hide();
             Scene scene = new Scene(fxmlLoader.load(), 480, 360);
             scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
             setScene(scene);

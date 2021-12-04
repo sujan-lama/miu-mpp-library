@@ -14,9 +14,9 @@ public class OverdueWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
-
+        super.setTitle("Over Dues Book");
         FXMLLoader fxmlLoader = new FXMLLoader(OverdueWindow.class.getResource("viewOverdue.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 540, 490);
+        Scene scene = new Scene(fxmlLoader.load(), 467, 161);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
         show();

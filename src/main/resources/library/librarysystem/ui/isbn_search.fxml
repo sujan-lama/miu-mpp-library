@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.3394648829431438" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.IsbnSearchController">
+<SplitPane fx:id="anchor"  dividerPositions="0.3394648829431438" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.IsbnSearchController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="242.0">
             <children>
@@ -26,7 +26,7 @@
                 </Label>
                 <TextField fx:id="isbnSearchText" layoutX="13.0" layoutY="101.0" />
                 <Button layoutX="13.0" layoutY="144.0" mnemonicParsing="false" onAction="#searchBook" prefHeight="25.0" prefWidth="149.0" text="search" />
-                <Button layoutX="14.0" layoutY="226.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="25.0" prefWidth="149.0" text="&lt;= Go Back" />
+                <Button layoutX="14.0" layoutY="226.0" mnemonicParsing="false" onAction="#onBackPressed" prefHeight="25.0" prefWidth="149.0" text="Go Back" />
                 <Label fx:id="bookStatus" layoutX="14.0" layoutY="184.0" prefHeight="17.0" prefWidth="149.0" />
             </children>
         </AnchorPane>

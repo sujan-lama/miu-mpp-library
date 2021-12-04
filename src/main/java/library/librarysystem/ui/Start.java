@@ -39,7 +39,7 @@ public class Start extends Application {
         primaryStage.setTitle("Main Page");
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("start.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 420, 375);
+        Scene scene = new Scene(fxmlLoader.load(), 555, 400);
         primaryStage.setScene(scene);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         primaryStage.show();

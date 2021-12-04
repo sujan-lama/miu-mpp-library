@@ -36,7 +36,7 @@ public class LoginWindow extends Stage implements LibWindow {
     public void init() throws IOException {
         super.setTitle("Login");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 480, 360);
+        Scene scene = new Scene(fxmlLoader.load(), 463, 450);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
 
