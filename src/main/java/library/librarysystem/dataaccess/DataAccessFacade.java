@@ -160,7 +160,11 @@ public class DataAccessFacade implements DataAccess {
     public static List<CheckoutRecordEntry> getCheckoutRecordEntries(String memberId) {
         HashMap<String, LibraryMember> memberHashMap = (HashMap<String, LibraryMember>) readFromStorage(
                 StorageType.MEMBERS);
-        return memberHashMap.get(memberId).getCheckoutRecord().getCheckoutRecordEntries();
+        if (memberHashMap.get(memberId).getCheckoutRecord() == null)
+            return new ArrayList<>();
+
+        List<CheckoutRecordEntry> list = memberHashMap.get(memberId).getCheckoutRecord().getCheckoutRecordEntries();
+        return list;
     }
 
     public static List<BookCopy> getBooksByIsbn(String isbn) {

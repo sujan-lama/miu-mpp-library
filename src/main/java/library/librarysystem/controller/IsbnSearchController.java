@@ -9,12 +9,25 @@ import javafx.stage.Stage;
 import library.librarysystem.business.Author;
 import library.librarysystem.business.Book;
 import library.librarysystem.dataaccess.DataAccessFacade;
+import library.librarysystem.ui.AdminWindow;
+import library.librarysystem.ui.SearchBooksWindow;
 import library.librarysystem.ui.Start;
 
+import java.io.IOException;
 import java.util.List;
 
 public class IsbnSearchController extends Stage {
 
+    @FXML
+    public Label isbnLabel;
+    @FXML
+    public Label titleLabel;
+    @FXML
+    public Label authorLabel;
+    @FXML
+    public Label numCopiesLabel;
+    @FXML
+    public Button addCopyButton;
     @FXML
     private ComboBox<Integer> noOfBooksCombo;
 
@@ -43,8 +56,12 @@ public class IsbnSearchController extends Stage {
 
     @FXML
     public void onBackPressed() {
-        Start.hideAllWindows();
-        Start.primStage().show();
+        SearchBooksWindow.INSTANCE.hide();
+        try {
+            AdminWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -57,9 +74,13 @@ public class IsbnSearchController extends Stage {
                 Book book = dataAccessFacade.readBooksMap().get(isbn);
                 inflateBookDataToView(book);
                 setPositiveLabel();
+                showHideView(true);
             } else {
                 setNegativeLabel();
+                showHideView(false);
             }
+        } else {
+            showEmptyLabel();
         }
     }
 
@@ -76,7 +97,7 @@ public class IsbnSearchController extends Stage {
         for (Author author : authors) {
             result.append(separator);
             result.append(author.getFirstAndLastName());
-            separator = ",";
+            separator = ", ";
         }
         return result.toString();
     }
@@ -89,6 +110,11 @@ public class IsbnSearchController extends Stage {
     private void setPositiveLabel() {
         bookStatus.setText("Book is available");
         bookStatus.setTextFill(Paint.valueOf("GREEN"));
+    }
+
+    private void showEmptyLabel() {
+        bookStatus.setText("Please enter ISBN");
+        bookStatus.setTextFill(Paint.valueOf("RED"));
     }
 
     private boolean searchBookInDatabase(String isbn) {
@@ -118,17 +144,37 @@ public class IsbnSearchController extends Stage {
         if (alert.getResult() == ButtonType.YES) {
             Book book = dataAccessFacade.readBooksMap().get(isbn.getText());
             book.addCopy(isbn.getText(), numOfCopies);
-            noOfBooksCombo.setValue(null);
             messageBar.setTextFill(Start.Colors.green);
             messageBar.setText("Book copies added successfully.");
         }
     }
 
 
+    private void showHideView(boolean show) {
+        isbn.setVisible(show);
+        bookTitle.setVisible(show);
+        author.setVisible(show);
+        numberOfCopies.setVisible(show);
+        noOfBooksCombo.setVisible(show);
+        isbnLabel.setVisible(show);
+        authorLabel.setVisible(show);
+        numCopiesLabel.setVisible(show);
+        titleLabel.setVisible(show);
+        addCopyButton.setVisible(show);
+    }
+
     public void setData() {
         for (int i = 1; i <= 10; i++) {
             noOfBooksCombo.getItems().add(i);
         }
+        addCopyButton.setDisable(true);
+        showHideView(false);
+    }
+
+    @FXML
+    private void comboAction(ActionEvent event) {
+        addCopyButton.setDisable(false);
+        System.out.println(noOfBooksCombo.getValue());
     }
 
 }

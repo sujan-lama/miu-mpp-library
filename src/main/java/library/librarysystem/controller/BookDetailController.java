@@ -23,7 +23,10 @@ import java.util.Optional;
 
 public class BookDetailController extends Stage {
 
-
+    @FXML
+    public Label numofCopies;
+    @FXML
+    public Label isbn;
     @FXML
     private Label title;
 
@@ -45,6 +48,8 @@ public class BookDetailController extends Stage {
     public void setData(Book book) {
         this.book = book;
         title.setText(book.getTitle());
+        numofCopies.setText(String.valueOf(book.getNumCopies()));
+        isbn.setText(String.valueOf(book.getIsbn()));
         maxCheckout.setText(String.valueOf(book.getMaxCheckoutLength()));
         List<String> authorNames = new ArrayList<>();
         int i = 1;

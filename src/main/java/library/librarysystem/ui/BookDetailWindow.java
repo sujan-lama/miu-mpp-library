@@ -20,7 +20,7 @@ public class BookDetailWindow extends Stage implements LibWindow {
     @Override
     public void init() throws IOException {
         fxmlLoader = new FXMLLoader(getClass().getResource("bookDetail.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 410);
+        Scene scene = new Scene(fxmlLoader.load(), 620, 460);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
     }
