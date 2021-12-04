@@ -123,7 +123,7 @@ public class AddBookController extends Stage {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        AuthorDetailWindow.INSTANCE.setAuthor(authors.get(authorList.getSelectionModel().getSelectedIndices().get(0)));
+                        AuthorDetailWindow.INSTANCE.setAuthor(authors.get(authorList.getSelectionModel().getSelectedIndices().get(0)), true);
                     }
                 }
         );

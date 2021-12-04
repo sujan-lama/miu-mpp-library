@@ -38,7 +38,7 @@
         </Label>
         <Button layoutX="64.0" layoutY="73.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
       <ListView fx:id="authorList" layoutX="64.0" layoutY="292.0" prefHeight="135.0" prefWidth="468.0" />
-      <MenuBar layoutX="444.0" layoutY="72.0" prefHeight="26.0" style="-fx-background-color: #00FFFF;">
+      <MenuBar layoutX="444.0" layoutY="72.0" prefHeight="26.0">
         <menus>
           <Menu mnemonicParsing="false" text="Options">
             <items>

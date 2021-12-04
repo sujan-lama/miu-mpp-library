@@ -22,6 +22,7 @@ public class Person implements Serializable {
 	public String getTelephone() {
 		return telephone;
 	}
+
 	public Address getAddress() {
 		return address;
 	}

@@ -14,7 +14,6 @@ import library.librarysystem.business.SystemController;
 import library.librarysystem.ui.AddBookWindow;
 import library.librarysystem.ui.AuthorDetailWindow;
 import library.librarysystem.ui.BookDetailWindow;
-import library.librarysystem.ui.ListBookWindow;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,6 +50,17 @@ public class BookDetailController extends Stage {
         numofCopies.setText(String.valueOf(book.getNumCopies()));
         isbn.setText(String.valueOf(book.getIsbn()));
         maxCheckout.setText(String.valueOf(book.getMaxCheckoutLength()));
+        authorList.setOnMouseClicked(event -> {
+                    if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+                        try {
+                            AuthorDetailWindow.INSTANCE.init();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        AuthorDetailWindow.INSTANCE.setAuthor(book.getAuthors().get(authorList.getSelectionModel().getSelectedIndices().get(0)), false);
+                    }
+                }
+        );
         List<String> authorNames = new ArrayList<>();
         int i = 1;
         for (Author author : book.getAuthors()) {

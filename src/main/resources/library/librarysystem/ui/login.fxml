@@ -16,6 +16,11 @@
                 <Image url="@bg.jpg" />
             </image>
         </ImageView>
+        <ImageView fitHeight="36.0" fitWidth="33.0" layoutX="25.0" layoutY="14.0" onMouseClicked="#onBackPressed" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@back.png" />
+            </image>
+        </ImageView>
         <AnchorPane layoutX="71.0" layoutY="63.0" prefHeight="338.0" prefWidth="324.0" style="-fx-background-color: #FFF;">
             <children>
                 <Label alignment="CENTER" layoutX="88.0" layoutY="35.0" prefHeight="44.0" prefWidth="146.0" text="Login Screen">
@@ -27,7 +32,7 @@
                 <Label layoutX="34.0" layoutY="189.0" text="Password" />
                 <TextField fx:id="userTextField" layoutX="34.0" layoutY="134.0" prefHeight="34.0" prefWidth="262.0" text="" />
                 <PasswordField fx:id="passwordTextField" layoutX="34.0" layoutY="216.0" prefHeight="34.0" prefWidth="262.0" text="" />
-                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="280.0" mnemonicParsing="false" onAction="#loginValid" prefHeight="34.0" prefWidth="224.0" style="-fx-background-color: #00FFFF; -fx-text-fill: #fff;" text="Login">
+                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="280.0" mnemonicParsing="false" onAction="#loginValid" prefHeight="34.0" prefWidth="224.0" text="Login">
                     <font>
                         <Font name="Bell MT Bold" size="14.0" />
                     </font>
@@ -35,11 +40,6 @@
                 <Label fx:id="messageBar" layoutX="34.0" layoutY="251.0" prefHeight="18.0" prefWidth="262.0" text="" textFill="#e10909" />
             </children>
         </AnchorPane>
-        <ImageView fitHeight="36.0" fitWidth="33.0" layoutX="25.0" layoutY="14.0" onMouseClicked="#onBackPressed" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@back.png" />
-            </image>
-        </ImageView>
         <Label layoutX="49.0" layoutY="22.0" onMouseClicked="#onBackPressed" style="-fx-text-fill: #000;" text="Go Back" />
     </children>
 </AnchorPane>

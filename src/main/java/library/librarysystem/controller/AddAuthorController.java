@@ -2,10 +2,7 @@ package library.librarysystem.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import library.librarysystem.business.Address;
 import library.librarysystem.business.Author;
@@ -40,6 +37,9 @@ public class AddAuthorController extends Stage {
     private TextField bio;
 
     @FXML
+    private CheckBox credentials;
+
+    @FXML
     private Button submit;
 
     Alert alert = new Alert(Alert.AlertType.NONE);
@@ -62,8 +62,9 @@ public class AddAuthorController extends Stage {
         String textState = state.getText().trim();
         String textZip = zip.getText().trim();
         String textBio = bio.getText().trim();
+        boolean credentialsValue = credentials.isSelected();
         Address address = new Address(textStreet, textCity, textState, textZip);
-        Author newAuthor = new Author(textFirstName, textLastName, textPhoneNumber, address, textBio);
+        Author newAuthor = new Author(textFirstName, textLastName, textPhoneNumber, address, textBio, credentialsValue);
         boolean validate = validate(newAuthor);
         if (!validate) {
             alert.setAlertType(Alert.AlertType.ERROR);

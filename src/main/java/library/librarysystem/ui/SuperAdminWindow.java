@@ -16,7 +16,7 @@ public class SuperAdminWindow extends Stage implements LibWindow {
     public void init() throws IOException {
         super.setTitle("Super Admin Home Page");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("superadmin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 390, 310);
+        Scene scene = new Scene(fxmlLoader.load(), 390, 300);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
         show();

@@ -75,7 +75,7 @@ public class TestData {
         CheckoutRecord checkoutRecord = new CheckoutRecord();
         BookCopy bookCopy = new BookCopy(allBooks.get(0), 1, false);
         CheckoutRecordEntry checkoutRecordEntry = new CheckoutRecordEntry(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1),
-                bookCopy, checkoutRecord );
+                bookCopy, checkoutRecord);
         checkoutRecord.setCheckoutRecordEntries(List.of(checkoutRecordEntry));
         libraryMember.setCheckoutRecord(checkoutRecord);
     }
@@ -99,11 +99,11 @@ public class TestData {
     @SuppressWarnings("serial")
     public List<Author> allAuthors = new ArrayList<Author>() {
         {
-            add(new Author("Joe", "Thomas", "641-445-2123", addresses.get(0), "A happy man is he."));
-            add(new Author("Sandra", "Thomas", "641-445-2123", addresses.get(0), "A happy wife is she."));
-            add(new Author("Nirmal", "Pugh", "641-919-3223", addresses.get(1), "Thinker of thoughts."));
-            add(new Author("Andrew", "Cleveland", "976-445-2232", addresses.get(2), "Author of childrens' books."));
-            add(new Author("Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
+            add(new Author("Joe", "Thomas", "641-445-2123", addresses.get(0), "A happy man is he.", false));
+            add(new Author("Sandra", "Thomas", "641-445-2123", addresses.get(0), "A happy wife is she.", false));
+            add(new Author("Nirmal", "Pugh", "641-919-3223", addresses.get(1), "Thinker of thoughts.", false));
+            add(new Author("Andrew", "Cleveland", "976-445-2232", addresses.get(2), "Author of childrens' books.", true));
+            add(new Author("Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style.", true));
         }
     };
 
@@ -120,9 +120,9 @@ public class TestData {
     @SuppressWarnings("serial")
     List<User> allUsers = new ArrayList<User>() {
         {
-            add(new User("101", "xyz", Auth.LIBRARIAN));
-            add(new User("102", "abc", Auth.ADMIN));
-            add(new User("103", "111", Auth.BOTH));
+            add(new User("lib", "123", Auth.LIBRARIAN));
+            add(new User("admin", "123", Auth.ADMIN));
+            add(new User("super", "123", Auth.BOTH));
         }
     };
 }

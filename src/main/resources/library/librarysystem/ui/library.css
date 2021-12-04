@@ -10,8 +10,8 @@
 }
 
 .button {
-    -fx-background-color: #00FFFF;
-    -fx-text-fill: #000;
+    -fx-background-color: #1F51FF;
+    -fx-text-fill: #fff;
     -fx-font-family: "Bell MT";
     -fx-font-size: 14px;
 }

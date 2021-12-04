@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import library.librarysystem.business.Author;
 import library.librarysystem.ui.AddAuthorWindow;
@@ -22,15 +23,22 @@ public class AuthorDetailController extends Stage {
     private Label phone;
 
     @FXML
+    private Label credentials;
+
+    @FXML
     private Label address;
 
     private Author author;
 
+    @FXML
+    private MenuBar options;
 
-    public void setData(Author author) {
+    public void setData(Author author, boolean fromAdd) {
         this.author = author;
         name.setText(author.getFirstName() + " " + author.getLastName());
         phone.setText(author.getTelephone());
+        options.setVisible(fromAdd);
+        credentials.setText(author.isHasCredentials() ? "Author is expert in that area and have qualification" : "Author is not expert in that area and does not have qualification");
         address.setText(author.getAddress().getStreet() + ", " + author.getAddress().getCity() + ", " + author.getAddress().getState() + ", " + author.getAddress().getZip());
     }
 
