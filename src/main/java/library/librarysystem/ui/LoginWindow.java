@@ -36,7 +36,7 @@ public class LoginWindow extends Stage implements LibWindow {
     public void init() throws IOException {
         super.setTitle("Login");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 480, 360);
+        Scene scene = new Scene(fxmlLoader.load(), 463, 450);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
 
@@ -46,9 +46,15 @@ public class LoginWindow extends Stage implements LibWindow {
         Start.hideAllWindows();
         try {
             switch (currentAuth) {
-                case ADMIN -> AdminWindow.INSTANCE.init();
-                case LIBRARIAN -> LibrarianWindow.INSTANCE.init();
-                case BOTH -> System.out.println("both");
+                case ADMIN -> {
+                    AdminWindow.INSTANCE.setData(false);
+                    AdminWindow.INSTANCE.init();
+                }
+                case LIBRARIAN -> {
+                    AdminWindow.INSTANCE.setData(false);
+                    LibrarianWindow.INSTANCE.init();
+                }
+                case BOTH -> SuperAdminWindow.INSTANCE.init();
 
             }
         } catch (IOException e) {

@@ -19,6 +19,7 @@ public class AuthorDetailWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
+        super.setTitle("Author Detail");
         fxmlLoader = new FXMLLoader(getClass().getResource("authorDetail.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 410);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());

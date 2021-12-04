@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.AddLibraryMemberController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.AddLibraryMemberController">
     <children>
         <Label layoutX="31.0" layoutY="73.0" prefHeight="30.0" prefWidth="66.0" text="Member Id" />
         <TextField fx:id="id" layoutX="27.0" layoutY="103.0" prefHeight="26.0" prefWidth="161.0" />
@@ -35,6 +35,6 @@
         <Label layoutX="37.0" layoutY="352.0" prefHeight="30.0" prefWidth="66.0" text="Zip" />
         <TextField fx:id="zip" layoutX="37.0" layoutY="390.0" prefHeight="26.0" prefWidth="141.0" />
         <Button fx:id="submit" layoutX="242.0" layoutY="443.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
-      <Button layoutX="462.0" layoutY="29.0" mnemonicParsing="false" onAction="#goBack" style="-fx-background-color: #444;" text="&lt;- Go Back" textFill="WHITE" />
+      <Button fx:id="goBack" layoutX="462.0" layoutY="29.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
     </children>
 </AnchorPane>

@@ -59,6 +59,7 @@ public class IsbnSearchController extends Stage {
         SearchBooksWindow.INSTANCE.hide();
         try {
             AdminWindow.INSTANCE.init();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

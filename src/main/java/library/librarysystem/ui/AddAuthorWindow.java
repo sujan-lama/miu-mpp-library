@@ -20,7 +20,7 @@ public class AddAuthorWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
-
+        super.setTitle("Add Author");
         fxmlLoader = new FXMLLoader(getClass().getResource("addAuthor.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 620, 560);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());

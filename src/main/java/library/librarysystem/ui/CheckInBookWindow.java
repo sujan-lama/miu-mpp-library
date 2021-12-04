@@ -14,6 +14,7 @@ public class CheckInBookWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
+        super.setTitle("Checkin Books");
         fxmlLoader = new FXMLLoader(getClass().getResource("checkinBook.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 242);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());

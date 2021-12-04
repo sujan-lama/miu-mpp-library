@@ -1,7 +1,28 @@
-#topContainer{
-     -fx-background-color: #fbffd1;/*#8E0000*/;
+#topContainer {
+    -fx-background-color: #fbffd1; /*#8E0000*/;
+}
+
+#anchor {
+    -fx-background-image: url(../ui/bg.jpg);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 0% 0%;
+    -fx-background-size: 100% 100%;
+}
+
+.button {
+    -fx-background-color: #00FFFF;
+    -fx-text-fill: #000;
+    -fx-font-family: "Bell MT";
+    -fx-font-size: 14px;
+}
+
+#logout {
+    -fx-background-color: #ff004d;
+    -fx-text-fill: #fff;
+    -fx-font-family: "Bell MT";
 }
 
 .label {
-   -fx-text-fill: #000099;
+    -fx-text-fill: #000;
+    -fx-font-family: "Bell MT";
 }

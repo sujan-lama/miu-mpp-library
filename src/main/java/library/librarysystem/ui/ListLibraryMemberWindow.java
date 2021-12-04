@@ -19,6 +19,7 @@ public class ListLibraryMemberWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
+        super.setTitle("Members List");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewMember.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 420, 410);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());

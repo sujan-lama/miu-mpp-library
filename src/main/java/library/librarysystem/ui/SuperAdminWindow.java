@@ -3,31 +3,22 @@ package library.librarysystem.ui;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import library.librarysystem.business.Book;
-import library.librarysystem.controller.BookDetailController;
+import library.librarysystem.business.ControllerInterface;
+import library.librarysystem.business.SystemController;
 
 import java.io.IOException;
 
-public class BookDetailWindow extends Stage implements LibWindow {
-
-
-    public static final BookDetailWindow INSTANCE = new BookDetailWindow();
+public class SuperAdminWindow extends Stage implements LibWindow {
+    public static SuperAdminWindow INSTANCE = new SuperAdminWindow();
     private boolean isInitialized = false;
-
-    private FXMLLoader fxmlLoader;
-
 
     @Override
     public void init() throws IOException {
-        super.setTitle("Book Detail");
-        fxmlLoader = new FXMLLoader(getClass().getResource("bookDetail.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 620, 460);
+        super.setTitle("Super Admin Home Page");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("superadmin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 390, 310);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
-    }
-
-    public void setBook(Book book) {
-        ((BookDetailController) fxmlLoader.getController()).setData(book);
         show();
     }
 
@@ -41,12 +32,15 @@ public class BookDetailWindow extends Stage implements LibWindow {
 
     }
 
-    public void goBack() {
+    public void logout() {
+        ControllerInterface ci = new SystemController();
+        ci.logout();
         hide();
         try {
-            ListBookWindow.INSTANCE.init();
+            LoginWindow.INSTANCE.init();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        LoginWindow.INSTANCE.show();
     }
 }

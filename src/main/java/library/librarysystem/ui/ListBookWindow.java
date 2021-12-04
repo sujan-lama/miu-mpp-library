@@ -19,6 +19,7 @@ public class ListBookWindow extends Stage implements LibWindow {
 
     @Override
     public void init() throws IOException {
+        super.setTitle("Books List");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("viewBook.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 420, 410);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());

@@ -6,19 +6,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LibrarianController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="347.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LibrarianController">
     <children>
-        <Label alignment="CENTER" layoutX="81.0" layoutY="24.0" prefHeight="44.0" prefWidth="298.0" text="Welcome">
+        <Label alignment="CENTER" layoutX="20.0" layoutY="24.0" prefHeight="44.0" prefWidth="298.0" text="Welcome Librarian">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="memberField" layoutX="111.0" layoutY="122.0" prefHeight="26.0" prefWidth="193.0" />
-        <Button fx:id="viewBtn" layoutX="322.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleViewButtonAction" prefHeight="44.0" prefWidth="114.0" text="View Checkout Record" textAlignment="CENTER" wrapText="true" />
-        <Label layoutX="110.0" layoutY="86.0" prefHeight="18.0" prefWidth="183.0" text="Enter Member Id" />
-        <Label layoutX="111.0" layoutY="164.0" prefHeight="18.0" text="Enter ISBN of book" />
-        <TextField fx:id="isbnField" layoutX="110.0" layoutY="194.0" prefHeight="26.0" prefWidth="194.0" />
-        <Button layoutX="173.0" layoutY="258.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="38.0" text="View Checkout Status" />
-        <Button layoutX="392.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+        <TextField fx:id="memberField" layoutX="95.0" layoutY="122.0" prefHeight="26.0" prefWidth="193.0" />
+        <Button layoutX="322.0" layoutY="122.0" mnemonicParsing="false" onAction="#handleViewButtonAction" prefHeight="26.0" prefWidth="114.0" text="View Record" textAlignment="CENTER" wrapText="true" />
+        <Label layoutX="95.0" layoutY="88.0" prefHeight="18.0" prefWidth="183.0" text="Enter Member Id">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="95.0" layoutY="164.0" prefHeight="18.0" text="Enter ISBN of book">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <TextField fx:id="isbnField" layoutX="94.0" layoutY="195.0" prefHeight="26.0" prefWidth="194.0" />
+        <Button layoutX="118.0" layoutY="238.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" prefWidth="137.0" text="View Books Status" />
+        <Button fx:id="logout" layoutX="379.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
     </children>
 </AnchorPane>

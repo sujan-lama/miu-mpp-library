@@ -13,6 +13,7 @@ public class CheckoutRecordTableWindow extends Stage implements LibWindow {
     private FXMLLoader fxmlLoader;
     @Override
     public void init() throws IOException {
+        super.setTitle("Checkout Records");
         fxmlLoader = new FXMLLoader(
                 Start.class.getResource("checkoutRecordTable.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 480, 360);

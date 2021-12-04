@@ -3,6 +3,9 @@ package library.librarysystem.ui;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import library.librarysystem.business.ControllerInterface;
+import library.librarysystem.business.SystemController;
+import library.librarysystem.controller.AdminController;
 
 import java.io.IOException;
 
@@ -12,16 +15,23 @@ public class AdminWindow extends Stage implements LibWindow {
 
     private boolean isInitialized = false;
 
+    private boolean fromSuperAdmin = false;
+
     @Override
     public void init() throws IOException {
-
+        super.setTitle("Admin Home Page");
         FXMLLoader fxmlLoader = new FXMLLoader(AdminWindow.class.getResource("admin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 540, 490);
+        Scene scene = new Scene(fxmlLoader.load(), 483, 477);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
+        if (fromSuperAdmin)
+            ((AdminController) fxmlLoader.getController()).setFromSuperAdmin();
         show();
     }
 
+    public void setData(boolean fromSuperAdmin) {
+        this.fromSuperAdmin = fromSuperAdmin;
+    }
 
     public void gotoAddLibraryMember() {
         hide();
@@ -86,5 +96,28 @@ public class AdminWindow extends Stage implements LibWindow {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void logout() {
+
+        if (fromSuperAdmin) {
+            hide();
+            try {
+                SuperAdminWindow.INSTANCE.init();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+        try {
+            ControllerInterface controller = new SystemController();
+            controller.logout();
+            LoginWindow.INSTANCE.init();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        hide();
+        LoginWindow.INSTANCE.show();
     }
 }
