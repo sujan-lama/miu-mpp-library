@@ -7,27 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="466.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.AddBookController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.AddBookController">
     <children>
-        <Label layoutX="31.0" layoutY="73.0" prefHeight="30.0" prefWidth="66.0" text="ISBN" />
-        <TextField fx:id="isbn" layoutX="27.0" layoutY="103.0" prefHeight="26.0" prefWidth="161.0" />
+        <Label layoutX="27.0" layoutY="73.0" prefHeight="30.0" prefWidth="66.0" text="ISBN" />
+        <TextField fx:id="isbn" layoutX="27.0" layoutY="103.0" prefHeight="26.0" prefWidth="254.0" />
         <Label fx:id="label" alignment="CENTER" layoutX="27.0" layoutY="27.0" text="Add Book">
             <font>
                 <Font name="Kristen ITC" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="27.0" layoutY="147.0" prefHeight="30.0" prefWidth="99.0" text="Title" />
-        <Label layoutX="238.0" layoutY="147.0" prefHeight="30.0" prefWidth="132.0" text="Maximum Checkout" />
-        <TextField fx:id="title" layoutX="27.0" layoutY="185.0" prefHeight="26.0" prefWidth="141.0" />
-        <TextField fx:id="maxCheckout" layoutX="228.0" layoutY="185.0" prefHeight="26.0" prefWidth="132.0" />
-        <Label layoutX="31.0" layoutY="237.0" prefHeight="30.0" prefWidth="99.0" text="Authors">
+        <Label layoutX="28.0" layoutY="133.0" prefHeight="30.0" prefWidth="99.0" text="Title" />
+        <Label layoutX="27.0" layoutY="197.0" prefHeight="30.0" prefWidth="132.0" text="Maximum Checkout" />
+        <TextField fx:id="title" layoutX="26.0" layoutY="164.0" prefHeight="26.0" prefWidth="253.0" />
+        <TextField fx:id="maxCheckout" layoutX="27.0" layoutY="228.0" prefHeight="26.0" prefWidth="254.0" />
+        <Label layoutX="28.0" layoutY="274.0" prefHeight="30.0" prefWidth="99.0" text="Authors">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="submit" layoutX="184.0" layoutY="465.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
-        <Button fx:id="goBack" layoutX="357.0" layoutY="29.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
-        <ListView fx:id="authorList" layoutX="31.0" layoutY="322.0" prefHeight="101.0" prefWidth="376.0" />
-        <Button fx:id="addAuthor" layoutX="108.0" layoutY="274.0" mnemonicParsing="false" onAction="#addAuthorButton" prefHeight="26.0" prefWidth="142.0" text="+ Add Author" />
+        <Button fx:id="submit" layoutX="64.0" layoutY="537.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="142.0" text="Submit" />
+        <ListView fx:id="authorList" layoutX="28.0" layoutY="359.0" prefHeight="156.0" prefWidth="214.0" />
+        <Button fx:id="addAuthor" layoutX="28.0" layoutY="312.0" mnemonicParsing="false" onAction="#addAuthorButton" prefHeight="26.0" prefWidth="142.0" text="+ Add Author" />
     </children>
 </AnchorPane>

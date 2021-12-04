@@ -30,8 +30,8 @@
                 </Label>
                 <Label layoutX="34.0" layoutY="106.0" text="User Name" />
                 <Label layoutX="34.0" layoutY="189.0" text="Password" />
-                <TextField fx:id="userTextField" layoutX="34.0" layoutY="134.0" prefHeight="34.0" prefWidth="262.0" text="" />
-                <PasswordField fx:id="passwordTextField" layoutX="34.0" layoutY="216.0" prefHeight="34.0" prefWidth="262.0" text="" />
+                <TextField fx:id="userTextField" layoutX="34.0" layoutY="134.0" prefHeight="34.0" prefWidth="262.0" text="super" />
+                <PasswordField fx:id="passwordTextField" layoutX="34.0" layoutY="216.0" prefHeight="34.0" prefWidth="262.0" text="123" />
                 <Button alignment="CENTER" contentDisplay="CENTER" layoutX="49.0" layoutY="280.0" mnemonicParsing="false" onAction="#loginValid" prefHeight="34.0" prefWidth="224.0" text="Login">
                     <font>
                         <Font name="Bell MT Bold" size="14.0" />

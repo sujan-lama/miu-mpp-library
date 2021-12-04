@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.SystemController;
+import library.librarysystem.controller.SuperAdminController;
 
 import java.io.IOException;
 
@@ -16,9 +17,12 @@ public class SuperAdminWindow extends Stage implements LibWindow {
     public void init() throws IOException {
         super.setTitle("Super Admin Home Page");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("superadmin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 390, 300);
+        Scene scene = new Scene(fxmlLoader.load(), 712, 472);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
+        SuperAdminController controller = fxmlLoader.getController();
+        controller.setLibraryMember();
+        controller.setBooks();
         show();
     }
 

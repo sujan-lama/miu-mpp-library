@@ -22,7 +22,7 @@ public class AddLibraryMemberWindow extends Stage implements LibWindow {
     public void init() throws IOException {
         super.setTitle("Add Library Member");
         fxmlLoader = new FXMLLoader(getClass().getResource("addLibraryMember.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 620, 560);
+        Scene scene = new Scene(fxmlLoader.load(), 309, 725);
         scene.getStylesheets().add(Start.class.getResource("library.css").toExternalForm());
         setScene(scene);
     }

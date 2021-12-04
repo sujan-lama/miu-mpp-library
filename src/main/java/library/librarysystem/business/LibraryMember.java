@@ -39,4 +39,8 @@ final public class LibraryMember extends Person implements Serializable {
 
 	@Serial
 	private static final long serialVersionUID = -2226197306790714013L;
+
+	public String getName() {
+		return getFirstName() +" " +getLastName();
+	}
 }

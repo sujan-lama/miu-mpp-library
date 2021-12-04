@@ -6,35 +6,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.AddLibraryMemberController">
+<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="309.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.AddLibraryMemberController">
     <children>
-        <Label layoutX="31.0" layoutY="73.0" prefHeight="30.0" prefWidth="66.0" text="Member Id" />
-        <TextField fx:id="id" layoutX="27.0" layoutY="103.0" prefHeight="26.0" prefWidth="161.0" />
+        <Label layoutX="24.0" layoutY="68.0" prefHeight="30.0" text="Member Id">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font></Label>
+        <TextField fx:id="id" layoutX="27.0" layoutY="96.0" prefHeight="26.0" prefWidth="262.0" />
         <Label fx:id="label" alignment="CENTER" layoutX="27.0" layoutY="27.0" text="Add Library Member">
             <font>
                 <Font name="Kristen ITC" size="18.0" />
             </font>
         </Label>
-        <Label layoutX="27.0" layoutY="147.0" prefHeight="30.0" prefWidth="142.0" text="First Name" />
-        <Label layoutX="226.0" layoutY="147.0" prefHeight="30.0" prefWidth="132.0" text="Last Name" />
-        <TextField fx:id="firstName" layoutX="27.0" layoutY="185.0" prefHeight="26.0" prefWidth="141.0" />
-        <TextField fx:id="lastName" layoutX="228.0" layoutY="185.0" prefHeight="26.0" prefWidth="132.0" />
-        <Label layoutX="424.0" layoutY="147.0" prefHeight="30.0" prefWidth="132.0" text="Phone Number" />
-        <Label layoutX="31.0" layoutY="237.0" prefHeight="30.0" prefWidth="99.0" text="Address">
+        <Label layoutX="24.0" layoutY="127.0" prefHeight="30.0" text="First Name" />
+        <Label layoutX="26.0" layoutY="192.0" prefHeight="30.0" text="Last Name" />
+        <TextField fx:id="firstName" layoutX="25.0" layoutY="158.0" prefHeight="26.0" prefWidth="262.0" />
+        <TextField fx:id="lastName" layoutX="26.0" layoutY="222.0" prefHeight="26.0" prefWidth="262.0" />
+        <Label layoutX="26.0" layoutY="259.0" prefHeight="30.0" text="Phone Number" />
+        <Label layoutX="24.0" layoutY="331.0" prefHeight="30.0" prefWidth="99.0" text="Address">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TextField fx:id="phoneNumber" layoutX="415.0" layoutY="185.0" prefHeight="26.0" prefWidth="132.0" />
-        <Label layoutX="34.0" layoutY="274.0" prefHeight="30.0" prefWidth="66.0" text="Street" />
-        <Label layoutX="245.0" layoutY="274.0" prefHeight="30.0" prefWidth="65.0" text="City" />
-        <TextField fx:id="street" layoutX="34.0" layoutY="312.0" prefHeight="26.0" prefWidth="141.0" />
-        <TextField fx:id="city" layoutX="235.0" layoutY="312.0" prefHeight="26.0" prefWidth="132.0" />
-        <Label layoutX="431.0" layoutY="274.0" prefHeight="30.0" prefWidth="99.0" text="State" />
-        <TextField fx:id="state" layoutX="422.0" layoutY="312.0" prefHeight="26.0" prefWidth="132.0" />
-        <Label layoutX="37.0" layoutY="352.0" prefHeight="30.0" prefWidth="66.0" text="Zip" />
-        <TextField fx:id="zip" layoutX="37.0" layoutY="390.0" prefHeight="26.0" prefWidth="141.0" />
-        <Button fx:id="submit" layoutX="242.0" layoutY="443.0" mnemonicParsing="false" onAction="#submit" text="Submit" />
-      <Button fx:id="goBack" layoutX="462.0" layoutY="29.0" mnemonicParsing="false" onAction="#goBack" text="Go Back" />
+        <TextField fx:id="phoneNumber" layoutX="27.0" layoutY="283.0" prefHeight="26.0" prefWidth="262.0" />
+        <Label layoutX="28.0" layoutY="377.0" prefHeight="30.0" text="Street" />
+        <Label layoutX="29.0" layoutY="435.0" prefHeight="30.0" text="City" />
+        <TextField fx:id="street" layoutX="27.0" layoutY="401.0" prefHeight="26.0" prefWidth="256.0" />
+        <TextField fx:id="city" layoutX="29.0" layoutY="465.0" prefHeight="26.0" prefWidth="256.0" />
+        <Label layoutX="27.0" layoutY="500.0" prefHeight="30.0" text="State" />
+        <TextField fx:id="state" layoutX="29.0" layoutY="530.0" prefHeight="26.0" prefWidth="256.0" />
+        <Label layoutX="29.0" layoutY="570.0" prefHeight="30.0" text="Zip" />
+        <TextField fx:id="zip" layoutX="27.0" layoutY="600.0" prefHeight="26.0" prefWidth="256.0" />
+        <Button fx:id="submit" layoutX="67.0" layoutY="657.0" mnemonicParsing="false" onAction="#submit" prefHeight="30.0" prefWidth="180.0" text="Submit" />
     </children>
 </AnchorPane>
