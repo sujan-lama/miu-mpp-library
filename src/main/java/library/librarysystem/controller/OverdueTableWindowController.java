@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import library.librarysystem.business.Book;
 import library.librarysystem.business.BookCopy;
 import library.librarysystem.business.CheckoutRecordEntry;
@@ -21,14 +22,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OverdueTableWindowController implements Initializable {
+public class OverdueTableWindowController extends Stage {
 
+    @FXML
+    public Label label;
     @FXML
     private TableView<BookCopy> table;
     @FXML
     private TableColumn<BookCopy, String> isbn;
     @FXML
-    private TableColumn<BookCopy, String> title;
+    private TableColumn<BookCopy, String> titleField;
     @FXML
     private TableColumn<BookCopy, String> copyNum;
     @FXML
@@ -41,15 +44,17 @@ public class OverdueTableWindowController implements Initializable {
     @FXML
     private Label memberName;
 
-    public ObservableList<BookCopy> list = FXCollections.observableArrayList(
-            DataAccessFacade.getBooksByIsbn(OverdueWindowController.currentIsbn)
-    );
+    public ObservableList<BookCopy> list;
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+
+    public void setData(Book book) {
+        list = FXCollections.observableArrayList(
+                DataAccessFacade.getBooksByIsbn(book.getIsbn())
+        );
+        label.setText("Overdue table for Book: " + book.getTitle());
         isbn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getBook().getIsbn())));
-        title.setCellValueFactory(cellData ->
+        titleField.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getBook().getTitle())));
         copyNum.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getCopyNum())));

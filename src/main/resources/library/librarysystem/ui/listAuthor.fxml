@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="384.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.ListAuthorController">
+    <children>
+        <SplitPane dividerPositions="0.29797979797979796" layoutX="26.0" layoutY="56.0" prefHeight="310.0" prefWidth="522.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <ListView fx:id="authorListView" layoutX="-4.0" layoutY="1.0" prefHeight="310.0" prefWidth="158.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="details" minHeight="0.0" minWidth="0.0" prefHeight="314.0" prefWidth="363.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="9.0" prefHeight="23.0" prefWidth="363.0" text="Details">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font></Label>
+                        <Label layoutX="25.0" layoutY="38.0" prefHeight="22.0" prefWidth="59.0" text="Name : ">
+                            <font>
+                                <Font name="Calibri Light" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="name" layoutX="121.0" layoutY="38.0" prefHeight="22.0" prefWidth="206.0">
+                            <font>
+                                <Font name="Calibri Light" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="71.0" prefHeight="22.0" prefWidth="59.0" text="Phone">
+                            <font>
+                                <Font name="Calibri Light" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="phone" layoutX="122.0" layoutY="71.0" prefHeight="22.0" prefWidth="206.0">
+                            <font>
+                                <Font name="Calibri Light" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="25.0" layoutY="142.0" prefHeight="22.0" text="Address">
+                            <font>
+                                <Font name="Calibri Bold" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="24.0" layoutY="104.0" prefHeight="22.0" text="Credentials">
+                            <font>
+                                <Font name="Calibri Light" size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="credentials" layoutX="121.0" layoutY="103.0" prefHeight="23.0" prefWidth="206.0" wrapText="true">
+                            <font>
+                                <Font name="Calibri Light" size="16.0" />
+                            </font>
+                        </Label>
+                  <Label layoutX="26.0" layoutY="173.0" prefHeight="22.0" prefWidth="59.0" text="Street">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="street" layoutX="121.0" layoutY="173.0" prefHeight="22.0" prefWidth="206.0">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="206.0" prefHeight="22.0" prefWidth="59.0" text="City">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="city" layoutX="121.0" layoutY="206.0" prefHeight="22.0" prefWidth="206.0">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="238.0" prefHeight="22.0" text="State">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="state" layoutX="121.0" layoutY="237.0" prefHeight="23.0" prefWidth="206.0" wrapText="true">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="268.0" prefHeight="22.0" text="Zip">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="zip" layoutX="122.0" layoutY="267.0" prefHeight="23.0" prefWidth="206.0" wrapText="true">
+                     <font>
+                        <Font name="Calibri Light" size="16.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <Label layoutX="38.0" layoutY="14.0" text="Author's List">
+            <font>
+                <Font size="16.0" />
+            </font>
+            <padding>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+            </padding>
+        </Label>
+    </children>
+</AnchorPane>

@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.librarysystem.business.LibraryMember;
+import library.librarysystem.business.SystemController;
 import library.librarysystem.controller.AddLibraryMemberController;
 
 import java.io.IOException;
@@ -63,6 +64,15 @@ public class AddLibraryMemberWindow extends Stage implements LibWindow {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addoreditMemberSuccess(LibraryMember member) {
+        hide();
+        switch(SystemController.currentAuth){
+            case BOTH -> {
+                HomeWindow.INSTANCE.updateLibraryMember(member);
+            }
         }
     }
 }

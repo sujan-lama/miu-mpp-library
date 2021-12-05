@@ -6,22 +6,33 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import library.librarysystem.business.*;
-import library.librarysystem.ui.AddBookWindow;
-import library.librarysystem.ui.AddLibraryMemberWindow;
-import library.librarysystem.ui.SuperAdminWindow;
+import library.librarysystem.dataaccess.Auth;
+import library.librarysystem.ui.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class SuperAdminController extends Stage {
+public class HomeController extends Stage {
 
     @FXML
-    private AnchorPane memberAnchor;
+    public TextField searchByISBN;
+    @FXML
+    public Tab memberTab;
+    @FXML
+    public Tab bookTab;
+    @FXML
+    public Button checkoutBooksBtn;
+    @FXML
+    public Button addBooksBtn;
+    @FXML
+    public Menu menu;
+    @FXML
+    private TabPane tabPane;
     @FXML
     public TableView<LibraryMember> memberTable;
 
@@ -45,6 +56,8 @@ public class SuperAdminController extends Stage {
     @FXML
     private TableColumn<Book, String> isbn;
     @FXML
+    public TableColumn<Book, String> isAvailable;
+    @FXML
     private TableColumn<Book, String> bookName;
     @FXML
     private TableColumn<Book, String> copyNum;
@@ -52,6 +65,18 @@ public class SuperAdminController extends Stage {
     private TableColumn<Book, String> maxCheckout;
     @FXML
     private TableColumn<Book, String> authors;
+
+    //books menu item
+    MenuItem authorDetail = new MenuItem("Author Detail");
+    MenuItem editBook = new MenuItem("Edit");
+    MenuItem deleteBook = new MenuItem("Delete");
+    MenuItem addCopy = new MenuItem("Add copy");
+    MenuItem checkOverdue = new MenuItem("Check Overdue");
+
+    //library menu item
+    MenuItem viewCheckout = new MenuItem("View Checkout Records");
+    MenuItem editMember = new MenuItem("Edit");
+    MenuItem deleteMember = new MenuItem("Delete");
 
     public ControllerInterface ci = new SystemController();
 
@@ -64,7 +89,11 @@ public class SuperAdminController extends Stage {
 
     @FXML
     public void checkoutBook() {
-
+        try {
+            CheckoutBookWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -87,10 +116,57 @@ public class SuperAdminController extends Stage {
         }
     }
 
+    public void setVisibilityByAuth(Auth auth) {
+        switch (auth) {
+            case BOTH -> {
+                menu.setText("SuperAdmin");
+                checkoutBooksBtn.setVisible(true);
+                addBooksBtn.setVisible(true);
+
+                //member
+                final ContextMenu contextMember = new ContextMenu();
+                contextMember.getItems().addAll(viewCheckout, editMember, deleteMember);
+                memberTable.setContextMenu(contextMember);
+
+                //book
+                final ContextMenu contextBook = new ContextMenu();
+                contextBook.getItems().addAll(authorDetail, addCopy, checkOverdue, editBook, deleteBook);
+                bookTable.setContextMenu(contextBook);
+            }
+
+            case ADMIN -> {
+                menu.setText("Admin");
+                checkoutBooksBtn.setVisible(false);
+                addBooksBtn.setVisible(true);
+
+                //member
+                final ContextMenu contextMember = new ContextMenu();
+                contextMember.getItems().addAll(editMember, deleteMember);
+                memberTable.setContextMenu(contextMember);
+
+                //book
+                final ContextMenu contextBook = new ContextMenu();
+                contextBook.getItems().addAll(authorDetail, addCopy, editBook, deleteBook);
+                bookTable.setContextMenu(contextBook);
+            }
+
+            case LIBRARIAN -> {
+                menu.setText("Librarian");
+                checkoutBooksBtn.setVisible(true);
+                addBooksBtn.setVisible(false);
+                //member
+                tabPane.getTabs().remove(memberTab);
+
+                //book
+                final ContextMenu contextBook = new ContextMenu();
+                contextBook.getItems().addAll(authorDetail, checkOverdue);
+                bookTable.setContextMenu(contextBook);
+            }
+        }
+    }
+
     public void setLibraryMember() {
-        MenuItem edit = new MenuItem("Edit");
-        MenuItem delete = new MenuItem("Delete");
-        edit.setOnAction(e -> {
+        editMember.setOnAction(e -> {
             try {
                 AddLibraryMemberWindow.INSTANCE.init();
                 AddLibraryMemberWindow.INSTANCE.setDataAndShow(memberTable.getSelectionModel().getSelectedItem());
@@ -98,8 +174,15 @@ public class SuperAdminController extends Stage {
                 ex.printStackTrace();
             }
         });
-        delete.setOnAction(e -> {
-
+        viewCheckout.setOnAction(e -> {
+            try {
+                CheckoutRecordTableWindow.INSTANCE.init();
+                CheckoutRecordTableWindow.INSTANCE.setDataAndShow(memberTable.getSelectionModel().getSelectedItem());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        deleteMember.setOnAction(e -> {
             LibraryMember member = memberTable.getSelectionModel().getSelectedItem();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("");
@@ -116,10 +199,6 @@ public class SuperAdminController extends Stage {
 
         });
 
-        final ContextMenu contextMenu = new ContextMenu();
-        contextMenu.getItems().addAll(edit, delete);
-
-        memberTable.setContextMenu(contextMenu);
 
         id.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getMemberId()));
@@ -141,9 +220,31 @@ public class SuperAdminController extends Stage {
     }
 
     public void setBooks() {
-        MenuItem edit = new MenuItem("Edit");
-        MenuItem delete = new MenuItem("Delete");
-        edit.setOnAction(e -> {
+        searchByISBN.textProperty().addListener((observable, oldValue, newValue) -> {
+            List<Book> books = ci.allBooks();
+            booksList.clear();
+            booksList.addAll(books.stream().filter(e -> e.getIsbn().startsWith(newValue)).toList());
+        });
+
+        List<MenuItem> booksMenuItems = new ArrayList<>();
+
+        authorDetail.setOnAction(e -> {
+            try {
+                ListAuthorWindow.INSTANCE.init();
+                ListAuthorWindow.INSTANCE.setDataAndShow(bookTable.getSelectionModel().getSelectedItem().getAuthors());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        checkOverdue.setOnAction(e -> {
+            try {
+                OverdueTableWindow.INSTANCE.init();
+                OverdueTableWindow.INSTANCE.setDataAndShow(bookTable.getSelectionModel().getSelectedItem());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        editBook.setOnAction(e -> {
             try {
                 AddBookWindow.INSTANCE.init();
                 AddBookWindow.INSTANCE.setDataAndShow(bookTable.getSelectionModel().getSelectedItem());
@@ -151,7 +252,15 @@ public class SuperAdminController extends Stage {
                 ex.printStackTrace();
             }
         });
-        delete.setOnAction(e -> {
+        addCopy.setOnAction(e -> {
+            try {
+                AddCopyWindow.INSTANCE.init();
+                AddCopyWindow.INSTANCE.setDataAndShow(bookTable.getSelectionModel().getSelectedItem());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        deleteBook.setOnAction(e -> {
 
             Book book = bookTable.getSelectionModel().getSelectedItem();
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -169,14 +278,12 @@ public class SuperAdminController extends Stage {
 
         });
 
-        final ContextMenu contextMenu = new ContextMenu();
-        contextMenu.getItems().addAll(edit, delete);
-        bookTable.setContextMenu(contextMenu);
-
         isbn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getIsbn()));
         bookName.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getTitle()));
+        isAvailable.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().isAvailable() ? "Yes" : "No"));
         copyNum.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getCopies().length)));
 
@@ -188,10 +295,18 @@ public class SuperAdminController extends Stage {
     }
 
     private String getAuthors(List<Author> authors) {
-        return authors.stream().map(e -> e.getFirstName() + " " + e.getLastName()).collect(Collectors.joining(", "));
+        return authors.stream().map(Person::getName).collect(Collectors.joining(", "));
     }
 
     public void logout(ActionEvent event) {
-        SuperAdminWindow.INSTANCE.logout();
+        HomeWindow.INSTANCE.logout();
+    }
+
+    public void updateBookTable(Book book) {
+        booksList.set(booksList.indexOf(book), book);
+    }
+
+    public void updateLibraryMember(LibraryMember member) {
+        libraryMembers.set(libraryMembers.indexOf(member), member);
     }
 }

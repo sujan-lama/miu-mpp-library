@@ -3,7 +3,6 @@ package library.librarysystem.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseButton;
 import javafx.stage.Stage;
 import library.librarysystem.business.Author;
 import library.librarysystem.business.Book;
@@ -11,12 +10,12 @@ import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.ui.AddAuthorWindow;
 import library.librarysystem.ui.AddBookWindow;
-import library.librarysystem.ui.AuthorDetailWindow;
 import library.librarysystem.utils.TextFieldUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AddBookController extends Stage {
 
@@ -40,11 +39,6 @@ public class AddBookController extends Stage {
     private Book book;
     private List<Author> authors = new ArrayList<>();
 
-    @FXML
-    public void goBack() {
-        AddBookWindow.INSTANCE.goBack();
-    }
-
 
     public void addBook(Book book, boolean update) {
 
@@ -53,8 +47,7 @@ public class AddBookController extends Stage {
             controller.saveBook(book);
         else
             controller.editBook(book);
-        AddBookWindow.INSTANCE.gotoBook(book);
-
+        AddBookWindow.INSTANCE.addoreditBookSuccess(book);
     }
 
     @FXML
@@ -116,17 +109,36 @@ public class AddBookController extends Stage {
             return;
         }
         authors.addAll(book.getAuthors());
-        authorList.setOnMouseClicked(event -> {
-                    if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
-                        try {
-                            AuthorDetailWindow.INSTANCE.init();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        AuthorDetailWindow.INSTANCE.setAuthor(authors.get(authorList.getSelectionModel().getSelectedIndices().get(0)), true);
-                    }
-                }
-        );
+        MenuItem edit = new MenuItem("Edit");
+        MenuItem delete = new MenuItem("Delete");
+        edit.setOnAction(e -> {
+            try {
+                AddAuthorWindow.INSTANCE.init();
+                AddAuthorWindow.INSTANCE.setDataAndShow(book.getAuthors().get(authorList.getSelectionModel().getSelectedIndex()));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        delete.setOnAction(e -> {
+            Author author = book.getAuthors().get(authorList.getSelectionModel().getSelectedIndex());
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("");
+            alert.setHeaderText("Delete author: " + author.getName() + "?");
+            alert.setContentText("");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                authors.remove(author);
+                authorList.getItems().remove(author.getName());
+            }
+        });
+
+        final ContextMenu contextMenu = new ContextMenu();
+        contextMenu.getItems().addAll(edit, delete);
+        authorList.setContextMenu(contextMenu);
+
         label.setText("Update Book");
         submit.setText("Update");
 
@@ -136,7 +148,7 @@ public class AddBookController extends Stage {
         maxCheckout.setText(String.valueOf(book.getMaxCheckoutLength()));
         List<String> authorNames = new ArrayList<>();
         for (Author author : book.getAuthors()) {
-            authorNames.add(author.getFirstName() + " " + author.getLastName());
+            authorNames.add(author.getName());
         }
         authorList.getItems().addAll(authorNames);
     }
@@ -144,10 +156,10 @@ public class AddBookController extends Stage {
     public void addAuthor(Author author, Author previousAuthor) {
         if (previousAuthor != null) {
             authors.remove(previousAuthor);
-            authorList.getItems().remove(previousAuthor.getFirstName() + " " + previousAuthor.getLastName());
+            authorList.getItems().remove(previousAuthor.getName());
         }
         authors.add(author);
-        authorList.getItems().add(author.getFirstName() + " " + author.getLastName());
+        authorList.getItems().add(author.getName());
     }
 
     @FXML
@@ -162,6 +174,6 @@ public class AddBookController extends Stage {
 
     public void deleteAuthor(Author author) {
         authors.remove(author);
-        authorList.getItems().remove(author.getFirstName() + " " + author.getLastName());
+        authorList.getItems().remove(author.getName());
     }
 }

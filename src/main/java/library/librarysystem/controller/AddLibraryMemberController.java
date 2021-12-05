@@ -11,6 +11,7 @@ import library.librarysystem.business.Address;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
+import library.librarysystem.ui.AddBookWindow;
 import library.librarysystem.ui.AddLibraryMemberWindow;
 import library.librarysystem.utils.TextFieldUtils;
 
@@ -58,7 +59,7 @@ public class AddLibraryMemberController extends Stage {
             controller.saveMember(member);
         else
             controller.editMember(member);
-        AddLibraryMemberWindow.INSTANCE.gotoLibraryMember(member);
+        AddLibraryMemberWindow.INSTANCE.addoreditMemberSuccess(member);
 
     }
 

@@ -97,4 +97,10 @@ public class SystemController implements ControllerInterface {
         DataAccess dataAccess = new DataAccessFacade();
         return dataAccess.readMemberMap().get(memberId);
     }
+
+    @Override
+    public Book getBooksById(String isbn) {
+        DataAccess dataAccess = new DataAccessFacade();
+        return dataAccess.readBooksMap().get(isbn);
+    }
 }

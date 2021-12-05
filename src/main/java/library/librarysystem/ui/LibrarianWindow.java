@@ -43,7 +43,7 @@ public class LibrarianWindow extends Stage implements LibWindow {
         hide();
         if (fromSuperAdmin) {
             try {
-                SuperAdminWindow.INSTANCE.init();
+                HomeWindow.INSTANCE.init();
             } catch (IOException e) {
                 e.printStackTrace();
             }

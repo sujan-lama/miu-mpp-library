@@ -33,4 +33,5 @@ public interface ControllerInterface {
 
     public List<LibraryMember> allMembers();
 
+    public Book getBooksById(String isbn);
 }

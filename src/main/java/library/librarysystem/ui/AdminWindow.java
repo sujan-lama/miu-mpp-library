@@ -103,7 +103,7 @@ public class AdminWindow extends Stage implements LibWindow {
         if (fromSuperAdmin) {
             hide();
             try {
-                SuperAdminWindow.INSTANCE.init();
+                HomeWindow.INSTANCE.init();
             } catch (IOException e) {
                 e.printStackTrace();
             }

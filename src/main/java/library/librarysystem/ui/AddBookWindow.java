@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.librarysystem.business.Author;
 import library.librarysystem.business.Book;
+import library.librarysystem.business.SystemController;
 import library.librarysystem.controller.AddBookController;
 
 import java.io.IOException;
@@ -75,5 +76,14 @@ public class AddBookWindow extends Stage implements LibWindow {
     public void deleteAuthor(Author author) {
         ((AddBookController) fxmlLoader.getController()).deleteAuthor(author);
 
+    }
+
+    public void addoreditBookSuccess(Book book) {
+        hide();
+       switch(SystemController.currentAuth){
+           case BOTH -> {
+               HomeWindow.INSTANCE.updateBook(book);
+           }
+       }
     }
 }

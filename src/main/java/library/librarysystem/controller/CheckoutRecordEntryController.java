@@ -13,9 +13,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import library.librarysystem.business.CheckoutRecordEntry;
+import library.librarysystem.business.LibraryMember;
 import library.librarysystem.dataaccess.DataAccessFacade;
-import library.librarysystem.ui.CheckInBookWindow;
+import library.librarysystem.ui.CheckoutBookWindow;
 import library.librarysystem.ui.CheckoutRecordTableWindow;
 import library.librarysystem.ui.LibrarianWindow;
 
@@ -23,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CheckoutRecordEntryController implements Initializable {
+public class CheckoutRecordEntryController extends Stage {
 
     @FXML
     private TableView<CheckoutRecordEntry> table;
@@ -46,14 +48,15 @@ public class CheckoutRecordEntryController implements Initializable {
     @FXML
     private Button printButton;
 
-    public ObservableList<CheckoutRecordEntry> checkoutRecordEntries = FXCollections.observableArrayList(
-            DataAccessFacade.getCheckoutRecordEntries(LibrarianController.currentMemberId)
-    );
+    public ObservableList<CheckoutRecordEntry> checkoutRecordEntries;
 
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
-        memberId.setText(LibrarianController.currentMemberId);
-        memberName.setText(LibrarianController.currentMemberName);
+
+    public void setData(LibraryMember member) {
+        memberId.setText(member.getMemberId());
+        memberName.setText(member.getName());
+        checkoutRecordEntries = FXCollections.observableArrayList(
+                DataAccessFacade.getCheckoutRecordEntries(member.getMemberId())
+        );
         isbn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getBookCopy().getBook().getIsbn()));
         title.setCellValueFactory(cellData ->
@@ -64,6 +67,7 @@ public class CheckoutRecordEntryController implements Initializable {
         dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         table.setItems(checkoutRecordEntries);
     }
+
 
     @FXML
     public void printCheckoutRecord(ActionEvent actionEvent) {
@@ -96,8 +100,8 @@ public class CheckoutRecordEntryController implements Initializable {
 
     public void checkInBookButton() {
         try {
-            CheckInBookWindow.INSTANCE.init();
-            CheckInBookWindow.INSTANCE.setDataAndShow(memberId.getText(), memberName.getText());
+            CheckoutBookWindow.INSTANCE.init();
+//            CheckInBookWindow.INSTANCE.setDataAndShow(memberId.getText(), memberName.getText());
         } catch (IOException e) {
             e.printStackTrace();
         }
