@@ -114,6 +114,7 @@ public class DataAccessFacade implements DataAccess {
 
         if (member.getCheckoutRecord().getCheckoutRecordEntries() == null) {
             member.getCheckoutRecord().setCheckoutRecordEntries(new ArrayList<>());
+            member.getCheckoutRecord().setLibraryMember(member);
         }
 
 

@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 import library.librarysystem.business.ControllerInterface;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
-import library.librarysystem.ui.AdminWindow;
-import library.librarysystem.ui.CheckoutRecordTableWindow;
-import library.librarysystem.ui.LibrarianWindow;
-import library.librarysystem.ui.OverdueWindow;
+import library.librarysystem.ui.*;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -129,5 +126,16 @@ public class LibrarianController extends Stage {
     @FXML
     public void logout() {
         LibrarianWindow.INSTANCE.logOut();
+    }
+
+    @FXML
+    public void viewAllCheckoutRecords(ActionEvent event) {
+        try {
+            AllCheckoutRecordTableWindow.INSTANCE.init();
+            AllCheckoutRecordTableWindow.INSTANCE.setDataAndShow();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

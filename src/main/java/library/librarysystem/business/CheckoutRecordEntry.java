@@ -19,6 +19,10 @@ final public class CheckoutRecordEntry implements Serializable {
         this.checkoutRecord = checkoutRecord;
     }
 
+    public CheckoutRecord getCheckoutRecord() {
+        return checkoutRecord;
+    }
+
     public LocalDate getCheckoutDate() {
         return checkoutDate;
     }

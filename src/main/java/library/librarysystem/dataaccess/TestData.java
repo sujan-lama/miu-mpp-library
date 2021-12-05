@@ -77,6 +77,7 @@ public class TestData {
         CheckoutRecordEntry checkoutRecordEntry = new CheckoutRecordEntry(LocalDate.now().minusDays(1), LocalDate.now().minusDays(1),
                 bookCopy, checkoutRecord);
         checkoutRecord.setCheckoutRecordEntries(List.of(checkoutRecordEntry));
+        checkoutRecord.setLibraryMember(libraryMember);
         libraryMember.setCheckoutRecord(checkoutRecord);
     }
 
