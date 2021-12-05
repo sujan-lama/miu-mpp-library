@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.controller.AddLibraryMemberController;
+import library.librarysystem.dataaccess.Auth;
 
 import java.io.IOException;
 
@@ -34,16 +35,6 @@ public class AddLibraryMemberWindow extends Stage implements LibWindow {
         show();
     }
 
-    public void gotoLibraryMember(LibraryMember member) {
-        hide();
-        try {
-            LibraryMemberDetailWindow.INSTANCE.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        LibraryMemberDetailWindow.INSTANCE.setLibraryMember(member);
-    }
-
     @Override
     public boolean isInitialized() {
         return isInitialized;
@@ -54,25 +45,9 @@ public class AddLibraryMemberWindow extends Stage implements LibWindow {
 
     }
 
-    public void goBack() {
-        hide();
-        try {
-            if (libraryMember == null) {
-                AdminWindow.INSTANCE.init();
-            } else {
-                ListLibraryMemberWindow.INSTANCE.init();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void addoreditMemberSuccess(LibraryMember member) {
         hide();
-        switch(SystemController.currentAuth){
-            case BOTH -> {
-                HomeWindow.INSTANCE.updateLibraryMember(member);
-            }
-        }
+        HomeWindow.INSTANCE.updateLibraryMember(member);
+
     }
 }

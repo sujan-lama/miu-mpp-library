@@ -27,10 +27,7 @@ public class Start extends Application {
 
     public static void hideAllWindows() {
         primStage.hide();
-        Stage[] allWindows = new Stage[]{LoginWindow.INSTANCE, AllMembersWindow.INSTANCE, AllBooksWindow.INSTANCE};
-        for (Stage st : allWindows) {
-            st.hide();
-        }
+        LoginWindow.INSTANCE.hide();
     }
 
     @Override

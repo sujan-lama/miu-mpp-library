@@ -26,7 +26,7 @@ public class AddBookController extends Stage {
     @FXML
     private TextField title;
     @FXML
-    private TextField maxCheckout;
+    private ComboBox<Integer> maxCheckout;
 
     @FXML
     private ListView<String> authorList;
@@ -54,8 +54,8 @@ public class AddBookController extends Stage {
     public void submit(ActionEvent event) {
         String textIsbn = isbn.getText().trim();
         String textTitle = title.getText().trim();
-        String textMaximumCheckout = maxCheckout.getText().trim();
-        Book newBook = new Book(textIsbn, textTitle, Integer.parseInt(textMaximumCheckout), authors);
+        int textMaximumCheckout = maxCheckout.getSelectionModel().getSelectedItem();
+        Book newBook = new Book(textIsbn, textTitle, textMaximumCheckout, authors);
         boolean validate = validate(newBook);
         if (!validate) {
             alert.setAlertType(Alert.AlertType.ERROR);
@@ -94,17 +94,18 @@ public class AddBookController extends Stage {
     private void clear() {
         isbn.setText("");
         title.setText("");
-        maxCheckout.setText("");
 
     }
 
 
     public void setData(Book book) {
         this.book = book;
-        maxCheckout.setTextFormatter(TextFieldUtils.integerTextFormatter());
+        maxCheckout.getItems().add(7);
+        maxCheckout.getItems().add(21);
         if (book == null) {
             label.setText("Add Book");
             submit.setText("Submit");
+            maxCheckout.getSelectionModel().select(Integer.valueOf(7));
             isbn.setDisable(false);
             return;
         }
@@ -145,7 +146,7 @@ public class AddBookController extends Stage {
         isbn.setText(book.getIsbn());
         title.setText(book.getTitle());
         isbn.setDisable(true);
-        maxCheckout.setText(String.valueOf(book.getMaxCheckoutLength()));
+        maxCheckout.getSelectionModel().select(Integer.valueOf(book.getMaxCheckoutLength()));
         List<String> authorNames = new ArrayList<>();
         for (Author author : book.getAuthors()) {
             authorNames.add(author.getName());

@@ -35,7 +35,7 @@
                             <content>
                                 <AnchorPane fx:id="memberAnchor" minHeight="0.0" minWidth="0.0" prefHeight="422.0" prefWidth="699.0">
                                     <children>
-                                        <Button layoutX="539.0" layoutY="22.0" mnemonicParsing="false" onAction="#addMember" text="Add Member" />
+                                        <Button fx:id="addMemberBtn" layoutX="539.0" layoutY="22.0" mnemonicParsing="false" onAction="#addMember" style="-fx-background-color: #e6e6e6; -fx-text-fill: #000;" text="Add Member" />
                                         <TableView fx:id="memberTable" layoutX="-1.0" layoutY="61.0" prefHeight="359.0" prefWidth="730.0">
                                             <columns>
                                                 <TableColumn fx:id="id" prefWidth="52.800018310546875" text="id" />
@@ -47,6 +47,7 @@
                                                 <TableColumn fx:id="zip" minWidth="0.0" prefWidth="95.20004882812498" text="Zip" />
                                             </columns>
                                         </TableView>
+                              <TextField fx:id="searchByMemberIdorName" layoutX="31.0" layoutY="22.0" prefHeight="26.0" prefWidth="176.0" promptText="Seach by member id or name" />
                                     </children>
                                 </AnchorPane>
                             </content>
@@ -55,16 +56,16 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="425.0" prefWidth="586.0">
                                     <children>
-                                        <Button fx:id="checkoutBooksBtn" layoutX="532.0" layoutY="27.0" mnemonicParsing="false" onAction="#checkoutBook" text="Checkout Books" />
-                                        <Button fx:id="addBooksBtn" layoutX="444.0" layoutY="27.0" mnemonicParsing="false" onAction="#addBook" text="Add Books" />
+                                        <Button fx:id="checkoutBooksBtn" layoutX="545.0" layoutY="27.0" mnemonicParsing="false" onAction="#checkoutBook" style="-fx-background-color: #e6e6e6; -fx-text-fill: #000;" text="Checkout Books" />
+                                        <Button fx:id="addBooksBtn" layoutX="407.0" layoutY="27.0" mnemonicParsing="false" onAction="#addBook" style="-fx-background-color: #e6e6e6; -fx-text-fill: #000;" text="Add Books" />
                                         <TableView fx:id="bookTable" layoutY="69.0" prefHeight="354.0" prefWidth="730.0">
                                             <columns>
                                                 <TableColumn fx:id="isbn" prefWidth="82.39999079704285" text="ISBN" />
-                                                <TableColumn fx:id="bookName" prefWidth="188.8000259399414" text="Book Name" />
-                                                <TableColumn fx:id="copyNum" minWidth="0.0" prefWidth="83.20001220703125" text="Copies" />
-                                                <TableColumn fx:id="maxCheckout" minWidth="0.0" prefWidth="100.79998779296875" text="Max Checkout" />
-                                                <TableColumn fx:id="isAvailable" minWidth="0.0" prefWidth="88.79995727539062" text="Is Available" />
-                                                <TableColumn fx:id="authors" minWidth="7.20001220703125" prefWidth="184.79998779296875" text="Authors" />
+                                                <TableColumn fx:id="bookName" prefWidth="175.19998931884766" text="Book Name" />
+                                                <TableColumn fx:id="copyNum" minWidth="0.0" prefWidth="88.79998779296875" text="Total Copies" />
+                                                <TableColumn fx:id="availableCopies" minWidth="0.0" prefWidth="100.800048828125" text="Available Copies" />
+                                                <TableColumn fx:id="maxCheckout" minWidth="0.0" prefWidth="96.79995727539062" text="Max Checkout" />
+                                                <TableColumn fx:id="authors" minWidth="7.20001220703125" prefWidth="189.5999755859375" text="Authors" />
                                             </columns>
                                         </TableView>
                                         <TextField fx:id="searchByISBN" layoutX="31.0" layoutY="26.0" prefHeight="26.0" prefWidth="165.0" promptText="Search by ISBN" />

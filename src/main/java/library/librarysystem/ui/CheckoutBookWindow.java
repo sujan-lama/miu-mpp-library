@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.librarysystem.business.Book;
 import library.librarysystem.business.SystemController;
+import library.librarysystem.dataaccess.Auth;
 
 import java.io.IOException;
 
@@ -36,10 +37,6 @@ public class CheckoutBookWindow extends Stage implements LibWindow {
     }
 
     public void updateBook(Book updatedBook) {
-        switch (SystemController.currentAuth) {
-            case BOTH -> {
-                HomeWindow.INSTANCE.updateBook(updatedBook);
-            }
-        }
+        HomeWindow.INSTANCE.updateBook(updatedBook);
     }
 }

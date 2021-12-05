@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import library.librarysystem.business.Book;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.controller.AddCopyController;
+import library.librarysystem.dataaccess.Auth;
 
 import java.io.IOException;
 
@@ -42,10 +43,6 @@ public class AddCopyWindow extends Stage implements LibWindow {
 
     public void updateBook(Book book) {
         hide();
-        switch(SystemController.currentAuth){
-            case BOTH -> {
-                HomeWindow.INSTANCE.updateBook(book);
-            }
-        }
+        HomeWindow.INSTANCE.updateBook(book);
     }
 }

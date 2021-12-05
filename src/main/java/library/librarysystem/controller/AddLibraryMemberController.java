@@ -46,11 +46,6 @@ public class AddLibraryMemberController extends Stage {
 
     private LibraryMember member;
 
-    @FXML
-    public void goBack() {
-        AddLibraryMemberWindow.INSTANCE.goBack();
-    }
-
 
     public void addLibraryMember(LibraryMember member, boolean update) {
 

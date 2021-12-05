@@ -8,10 +8,7 @@ import library.librarysystem.business.Address;
 import library.librarysystem.business.Author;
 import library.librarysystem.ui.AddAuthorWindow;
 import library.librarysystem.ui.AddBookWindow;
-import library.librarysystem.ui.BookDetailWindow;
 import library.librarysystem.utils.TextFieldUtils;
-
-import java.io.IOException;
 
 public class AddAuthorController extends Stage {
 

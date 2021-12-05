@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,14 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import library.librarysystem.business.Book;
 import library.librarysystem.business.BookCopy;
-import library.librarysystem.business.CheckoutRecordEntry;
 import library.librarysystem.dataaccess.DataAccessFacade;
 import library.librarysystem.ui.OverdueTableWindow;
-import library.librarysystem.ui.OverdueWindow;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class OverdueTableWindowController extends Stage {
 
@@ -61,14 +56,5 @@ public class OverdueTableWindowController extends Stage {
         libMember.setCellValueFactory(new PropertyValueFactory<>("memberName"));
         dueDate.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         table.setItems(list);
-    }
-
-    public void onBackPressed(ActionEvent event) {
-        OverdueTableWindow.INSTANCE.hide();
-        try {
-            OverdueWindow.INSTANCE.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

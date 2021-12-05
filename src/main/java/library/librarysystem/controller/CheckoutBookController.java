@@ -9,10 +9,13 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import library.librarysystem.business.Book;
 import library.librarysystem.business.ControllerInterface;
+import library.librarysystem.business.LibraryMember;
 import library.librarysystem.business.SystemController;
 import library.librarysystem.ui.CheckoutBookWindow;
+import library.librarysystem.ui.CheckoutRecordTableWindow;
 import library.librarysystem.ui.Start;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class CheckoutBookController extends Stage {
@@ -59,7 +62,14 @@ public class CheckoutBookController extends Stage {
             c.createCheckOutRecordEntry(memberId, isbn);
             Book updatedBook = ci.getBooksById(isbnField.getText());
             CheckoutBookWindow.INSTANCE.updateBook(updatedBook);
-            clear();
+            CheckoutBookWindow.INSTANCE.hide();
+            try {
+                CheckoutRecordTableWindow.INSTANCE.init();
+                LibraryMember member = c.getMemberById(memberId);
+                CheckoutRecordTableWindow.INSTANCE.setDataAndShow(member);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

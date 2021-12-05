@@ -12,8 +12,8 @@ import library.librarysystem.dataaccess.Auth;
 import library.librarysystem.ui.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,6 +31,10 @@ public class HomeController extends Stage {
     public Button addBooksBtn;
     @FXML
     public Menu menu;
+    @FXML
+    public Button addMemberBtn;
+    @FXML
+    public TextField searchByMemberIdorName;
     @FXML
     private TabPane tabPane;
     @FXML
@@ -56,7 +60,7 @@ public class HomeController extends Stage {
     @FXML
     private TableColumn<Book, String> isbn;
     @FXML
-    public TableColumn<Book, String> isAvailable;
+    public TableColumn<Book, String> availableCopies;
     @FXML
     private TableColumn<Book, String> bookName;
     @FXML
@@ -124,6 +128,7 @@ public class HomeController extends Stage {
                 addBooksBtn.setVisible(true);
 
                 //member
+                addMemberBtn.setVisible(true);
                 final ContextMenu contextMember = new ContextMenu();
                 contextMember.getItems().addAll(viewCheckout, editMember, deleteMember);
                 memberTable.setContextMenu(contextMember);
@@ -140,6 +145,7 @@ public class HomeController extends Stage {
                 addBooksBtn.setVisible(true);
 
                 //member
+                addMemberBtn.setVisible(true);
                 final ContextMenu contextMember = new ContextMenu();
                 contextMember.getItems().addAll(editMember, deleteMember);
                 memberTable.setContextMenu(contextMember);
@@ -155,7 +161,10 @@ public class HomeController extends Stage {
                 checkoutBooksBtn.setVisible(true);
                 addBooksBtn.setVisible(false);
                 //member
-                tabPane.getTabs().remove(memberTab);
+                addMemberBtn.setVisible(false);
+                final ContextMenu contextMember = new ContextMenu();
+                contextMember.getItems().addAll(viewCheckout);
+                memberTable.setContextMenu(contextMember);
 
                 //book
                 final ContextMenu contextBook = new ContextMenu();
@@ -166,6 +175,11 @@ public class HomeController extends Stage {
     }
 
     public void setLibraryMember() {
+        searchByMemberIdorName.textProperty().addListener((observable, oldValue, newValue) -> {
+            List<LibraryMember> member = ci.allMembers();
+            libraryMembers.clear();
+            libraryMembers.addAll(member.stream().filter(e -> e.getMemberId().startsWith(newValue) || e.getName().toLowerCase(Locale.ROOT).startsWith(newValue)).toList());
+        });
         editMember.setOnAction(e -> {
             try {
                 AddLibraryMemberWindow.INSTANCE.init();
@@ -226,8 +240,6 @@ public class HomeController extends Stage {
             booksList.addAll(books.stream().filter(e -> e.getIsbn().startsWith(newValue)).toList());
         });
 
-        List<MenuItem> booksMenuItems = new ArrayList<>();
-
         authorDetail.setOnAction(e -> {
             try {
                 ListAuthorWindow.INSTANCE.init();
@@ -282,8 +294,8 @@ public class HomeController extends Stage {
                 new SimpleStringProperty(cellData.getValue().getIsbn()));
         bookName.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getTitle()));
-        isAvailable.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().isAvailable() ? "Yes" : "No"));
+        availableCopies.setCellValueFactory(cellData ->
+                new SimpleStringProperty(String.valueOf(cellData.getValue().availableCopies())));
         copyNum.setCellValueFactory(cellData ->
                 new SimpleStringProperty(String.valueOf(cellData.getValue().getCopies().length)));
 
@@ -303,10 +315,17 @@ public class HomeController extends Stage {
     }
 
     public void updateBookTable(Book book) {
-        booksList.set(booksList.indexOf(book), book);
+        if (!booksList.contains(book)) {
+            booksList.add(book);
+        } else {
+            booksList.set(booksList.indexOf(book), book);
+        }
     }
 
     public void updateLibraryMember(LibraryMember member) {
-        libraryMembers.set(libraryMembers.indexOf(member), member);
+        if (!libraryMembers.contains(member)) {
+            libraryMembers.add(member);
+        } else
+            libraryMembers.set(libraryMembers.indexOf(member), member);
     }
 }

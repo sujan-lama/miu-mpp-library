@@ -2,8 +2,6 @@ package library.librarysystem.dataaccess;
 
 
 import library.librarysystem.business.*;
-import library.librarysystem.controller.OverdueWindowController;
-import library.librarysystem.ui.OverdueWindow;
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -96,6 +94,7 @@ public class DataAccessFacade implements DataAccess {
         return flag;
     }
 
+
     @Override
     public void createCheckOutRecordEntry(String memberId, String isbn) {
         LibraryMember member = readMemberMap().get(memberId);
@@ -182,7 +181,7 @@ public class DataAccessFacade implements DataAccess {
                 for (CheckoutRecordEntry entry : entries) {
                     if (entry.getDueDate().isBefore(LocalDate.now())
                             && !entry.getBookCopy().isAvailable() &&
-                            entry.getBookCopy().getBook().getIsbn().equals(OverdueWindowController.currentIsbn)) {
+                            entry.getBookCopy().getBook().getIsbn().equals(isbn)) {
                         BookCopy bookCopy = entry.getBookCopy();
                         bookCopy.setDueDate(entry.getDueDate());
                         bookCopy.setMemberName(libraryMember.getFirstName() + " " + libraryMember.getLastName());

@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import library.librarysystem.business.Author;
 import library.librarysystem.business.Book;
-import library.librarysystem.business.SystemController;
 import library.librarysystem.controller.AddBookController;
 
 import java.io.IOException;
@@ -35,17 +34,7 @@ public class AddBookWindow extends Stage implements LibWindow {
         show();
     }
 
-    public void gotoBook(Book book) {
-        hide();
-        try {
-            BookDetailWindow.INSTANCE.init();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        BookDetailWindow.INSTANCE.setBook(book);
-    }
-
-    public void addAuthor(Author author, Author previousAuthor){
+    public void addAuthor(Author author, Author previousAuthor) {
         ((AddBookController) fxmlLoader.getController()).addAuthor(author, previousAuthor);
     }
 
@@ -59,20 +48,6 @@ public class AddBookWindow extends Stage implements LibWindow {
 
     }
 
-    public void goBack() {
-        hide();
-        try {
-            if (book == null) {
-                AdminWindow.INSTANCE.init();
-            } else {
-                BookDetailWindow.INSTANCE.init();
-                BookDetailWindow.INSTANCE.setBook(book);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void deleteAuthor(Author author) {
         ((AddBookController) fxmlLoader.getController()).deleteAuthor(author);
 
@@ -80,10 +55,8 @@ public class AddBookWindow extends Stage implements LibWindow {
 
     public void addoreditBookSuccess(Book book) {
         hide();
-       switch(SystemController.currentAuth){
-           case BOTH -> {
-               HomeWindow.INSTANCE.updateBook(book);
-           }
-       }
+        HomeWindow.INSTANCE.updateBook(book);
+
+
     }
 }

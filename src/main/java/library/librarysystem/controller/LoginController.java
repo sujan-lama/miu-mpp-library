@@ -38,7 +38,7 @@ public class LoginController extends Stage {
             c.login(userTextField.getText().trim(), passwordTextField.getText().trim());
             messageBar.setTextFill(Start.Colors.green);
             messageBar.setText("Login successful");
-            LoginWindow.INSTANCE.loginSuccessful(SystemController.currentAuth);
+            LoginWindow.INSTANCE.loginSuccessful();
 
         } catch (LoginException ex) {
             messageBar.setTextFill(Start.Colors.red);

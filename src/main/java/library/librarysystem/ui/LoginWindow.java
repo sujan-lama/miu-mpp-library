@@ -42,7 +42,7 @@ public class LoginWindow extends Stage implements LibWindow {
 
     }
 
-    public void loginSuccessful(Auth currentAuth) {
+    public void loginSuccessful() {
         Start.hideAllWindows();
         try {
             HomeWindow.INSTANCE.init();

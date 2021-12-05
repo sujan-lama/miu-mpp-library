@@ -36,16 +36,11 @@ public class OverdueWindowController extends Stage {
     private void showTable() {
         messageBar.setText("");
         try {
-            OverdueWindow.INSTANCE.hide();
+//            OverdueWindow.INSTANCE.hide();
             OverdueTableWindow.INSTANCE.init();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @FXML
-    public void goBack() {
-        OverdueWindow.INSTANCE.hide();
-        LibrarianWindow.INSTANCE.show();
-    }
 }

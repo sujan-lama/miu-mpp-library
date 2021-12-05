@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,11 +18,8 @@ import library.librarysystem.business.LibraryMember;
 import library.librarysystem.dataaccess.DataAccessFacade;
 import library.librarysystem.ui.CheckoutBookWindow;
 import library.librarysystem.ui.CheckoutRecordTableWindow;
-import library.librarysystem.ui.LibrarianWindow;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CheckoutRecordEntryController extends Stage {
 
@@ -87,23 +83,5 @@ public class CheckoutRecordEntryController extends Stage {
             asciiTable.addRule();
         });
         System.out.println(asciiTable.render());
-    }
-
-    public void onBackPressed(MouseEvent mouseEvent) {
-        try {
-            LibrarianWindow.INSTANCE.init();
-            CheckoutRecordTableWindow.INSTANCE.hide();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void checkInBookButton() {
-        try {
-            CheckoutBookWindow.INSTANCE.init();
-//            CheckInBookWindow.INSTANCE.setDataAndShow(memberId.getText(), memberName.getText());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
