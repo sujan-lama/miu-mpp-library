@@ -6,10 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import library.librarysystem.dataaccess.DataAccess;
 import library.librarysystem.dataaccess.DataAccessFacade;
-import library.librarysystem.ui.AdminWindow;
-import library.librarysystem.ui.OverdueTableWindow;
-import library.librarysystem.ui.OverdueWindow;
-import library.librarysystem.ui.Start;
+import library.librarysystem.ui.*;
 
 import java.io.IOException;
 
@@ -49,6 +46,6 @@ public class OverdueWindowController extends Stage {
     @FXML
     public void goBack() {
         OverdueWindow.INSTANCE.hide();
-        AdminWindow.INSTANCE.show();
+        LibrarianWindow.INSTANCE.show();
     }
 }

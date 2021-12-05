@@ -124,7 +124,6 @@ public class AddLibraryMemberController extends Stage {
     public void setData(LibraryMember member) {
         this.member = member;
         id.setTextFormatter(TextFieldUtils.integerTextFormatter());
-        phoneNumber.setTextFormatter(TextFieldUtils.integerTextFormatter());
         zip.setTextFormatter(TextFieldUtils.integerTextFormatter());
         if (member == null) {
             label.setText("Add Library Member");

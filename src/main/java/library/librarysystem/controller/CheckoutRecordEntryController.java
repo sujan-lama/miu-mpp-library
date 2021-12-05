@@ -66,7 +66,7 @@ public class CheckoutRecordEntryController implements Initializable {
     }
 
     @FXML
-    public void printCheckoutRecord(ActionEvent actionEvent){
+    public void printCheckoutRecord(ActionEvent actionEvent) {
 
         AsciiTable asciiTable = new AsciiTable();
         asciiTable.addRule();

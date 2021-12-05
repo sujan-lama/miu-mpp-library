@@ -12,6 +12,17 @@ public class CheckoutRecord implements Serializable {
         return checkoutRecordEntries;
     }
 
+    private LibraryMember libraryMember;
+
+
+    public LibraryMember getLibraryMember() {
+        return libraryMember;
+    }
+
+    public void setLibraryMember(LibraryMember libraryMember) {
+        this.libraryMember = libraryMember;
+    }
+
     public void setCheckoutRecordEntries(List<CheckoutRecordEntry> checkoutRecordEntries) {
         this.checkoutRecordEntries = checkoutRecordEntries;
     }

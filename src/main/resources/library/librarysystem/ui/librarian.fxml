@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LibrarianController">
+<AnchorPane fx:id="anchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="461.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.librarysystem.controller.LibrarianController">
     <children>
         <Label alignment="CENTER" layoutX="38.0" layoutY="24.0" prefHeight="44.0" text="Welcome Librarian">
             <font>
@@ -24,7 +24,9 @@
             <Font size="14.0" />
          </font></Label>
         <TextField fx:id="isbnField" layoutX="38.0" layoutY="197.0" prefHeight="26.0" prefWidth="194.0" />
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="197.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" text="View Books Status" />
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="197.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" text="Checkout Book" />
         <Button fx:id="logout" layoutX="296.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="254.0" mnemonicParsing="false" onAction="#viewOverdueBooks" prefHeight="34.0" prefWidth="160.0" text="Check Overdue Books" />
+      <Button fx:id="viewAllCheckout" layoutX="245.0" layoutY="254.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="183.0" text="View All Checkout Records" onAction="#viewAllCheckoutRecords" />
     </children>
 </AnchorPane>

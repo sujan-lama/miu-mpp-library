@@ -102,7 +102,6 @@ public class AddAuthorController extends Stage {
 
     public void setData(Author author) {
         this.author = author;
-        phoneNumber.setTextFormatter(TextFieldUtils.integerTextFormatter());
         zip.setTextFormatter(TextFieldUtils.integerTextFormatter());
         if (author == null) {
             label.setText("Add  Author");
@@ -111,7 +110,7 @@ public class AddAuthorController extends Stage {
         }
         label.setText("Update  Author");
         submit.setText("Update");
-
+        credentials.setSelected(author.isHasCredentials());
         bio.setText(author.getBio());
         firstName.setText(author.getFirstName());
         lastName.setText(author.getLastName());
