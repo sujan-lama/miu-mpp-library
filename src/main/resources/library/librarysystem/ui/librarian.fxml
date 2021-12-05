@@ -24,7 +24,8 @@
             <Font size="14.0" />
          </font></Label>
         <TextField fx:id="isbnField" layoutX="38.0" layoutY="197.0" prefHeight="26.0" prefWidth="194.0" />
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="197.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" text="View Books Status" />
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="197.0" mnemonicParsing="false" onAction="#checkStatusAction" prefHeight="26.0" text="Checkout Book" />
         <Button fx:id="logout" layoutX="296.0" layoutY="33.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="237.0" mnemonicParsing="false" onAction="#viewOverdueBooks" prefHeight="34.0" prefWidth="149.0" text="Check Overdue Books" />
     </children>
 </AnchorPane>

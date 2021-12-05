@@ -20,7 +20,7 @@ final public class Author extends Person implements Serializable {
     private static final long serialVersionUID = 7508481940058530471L;
 
     public boolean isEmpty() {
-        return false;
+        return getFirstName().isEmpty() || getLastName().isEmpty() || getTelephone().isEmpty() || getAddress().isEmpty();
     }
 
     @Override

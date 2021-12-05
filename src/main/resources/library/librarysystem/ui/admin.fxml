@@ -27,7 +27,6 @@
         </Label>
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="169.0" mnemonicParsing="false" onAction="#viewLibraryMember" prefHeight="47.0" prefWidth="168.0" text="View Library Member" />
         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="319.0" mnemonicParsing="false" onAction="#viewBooks" prefHeight="47.0" prefWidth="168.0" text="View Books" />
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="396.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="47.0" prefWidth="168.0" text="Search Books" />
-        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="62.0" layoutY="396.0" mnemonicParsing="false" onAction="#viewOverdueBooks" prefHeight="47.0" prefWidth="168.0" text="Check Overdue Books" />
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="396.0" mnemonicParsing="false" onAction="#searchBooks" prefHeight="47.0" prefWidth="168.0" text="Search Books" />
     </children>
 </AnchorPane>
