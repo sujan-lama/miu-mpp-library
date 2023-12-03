@@ -68,4 +68,13 @@ public class AdminWindow extends Stage implements LibWindow {
             e.printStackTrace();
         }
     }
+
+    public void gotoOverdueBooks() {
+        hide();
+        try {
+            OverdueWindow.INSTANCE.init();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

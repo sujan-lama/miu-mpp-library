@@ -35,6 +35,11 @@ public class AdminController extends Stage {
     }
 
     @FXML
+    public void viewOverdueBooks(ActionEvent event) {
+        AdminWindow.INSTANCE.gotoOverdueBooks();
+    }
+
+    @FXML
     public void logout(ActionEvent event) {
         ControllerInterface controller = new SystemController();
         controller.logout();
